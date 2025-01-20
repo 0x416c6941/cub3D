@@ -31,11 +31,19 @@ LIBFT_NAME = libft.a
 LIBFT = $(LIBFT_DIR)/$(LIBFT_NAME)
 LIBFT_CLEAN = fclean
 
+# minilibx-linux.
+MLX_DIR = $(EXTERNAL_DIR)/minilibx-linux
+LIBMLX_A = $(MLX_DIR)/libmlx.a
+LIBMLX_LINUX_A = $(MLX_DIR)/libmlx_Linux.a
+MLX = $(MLX_DIR)/$(MLX_BUILD_TARGET)
+MLX_CLEAN = clean
+
 # Targets.
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ -L$(LIBFT_DIR) -lft
+$(NAME): $(LIBFT) $(LIBMLX_A) $(LIBMLX_LINUX_A) $(OBJ_FILES)
+	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ -L$(LIBFT_DIR) -lft	\
+		-L$(MLX_DIR) -lmlx -lXext -lX11
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)			# Create the $(OBJ_DIR) if it doesn't exist.
@@ -44,10 +52,17 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR) $(LIBFT_NAME)
 
+$(LIBMLX_A):
+	$(MAKE) -C $(MLX_DIR) $(MLX_BUILD_TARGET)
+
+$(LIBMLX_LINUX_A):
+	$(MAKE) -C $(MLX_DIR) $(MLX_BUILD_TARGET)
+
 .PHONY: clean
 clean:
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) $(LIBFT_CLEAN)
+	$(MAKE) -C $(MLX_DIR) $(MLX_CLEAN)
 
 .PHONY: fclean
 fclean: clean
