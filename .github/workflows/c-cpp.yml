@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  make-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install required toolchain
+      run: sudo apt update \
+        && sudo apt -y install gcc make xorg libxext-dev libbsd-dev
+
+    - name: Build test
+      run: make all
+
+    - name: Rebuild test
+      run: make re
