@@ -1,3 +1,12 @@
+# Binary, object files, dependency files, compiled libraries.
 *.o
 cub3D 
+a.out
+*.d
+*.a
+*.so
+
+# VS Code and Vim files.
 .vscode/
+.vimrc
+*.swp
