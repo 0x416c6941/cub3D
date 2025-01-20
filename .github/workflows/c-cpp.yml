@@ -17,7 +17,7 @@ jobs:
         submodules: recursive
 
     - name: Install required toolchain
-      run: sudo apt update \
+      run: sudo apt update
         && sudo apt -y install gcc make xorg libxext-dev libbsd-dev
 
     - name: Build test
