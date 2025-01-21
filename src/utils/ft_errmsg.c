@@ -6,11 +6,13 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:42:28 by root              #+#    #+#             */
-/*   Updated: 2025/01/10 22:24:01 by root             ###   ########.fr       */
+/*   Updated: 2025/01/21 17:54:32 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
+#include <unistd.h>
+#include <stdio.h>
 
 /**
  * @brief Add prefix "cub3D: Error" and print to standard error output.

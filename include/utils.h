@@ -6,18 +6,14 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 16:29:08 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:54:12 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <errno.h>
 # include <libft.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <unistd.h>
 
 # define CUB_PREFIX "Cub3D: Error: "
 # define WRITE_ERR_MSG "Error write failed."
@@ -31,6 +27,6 @@
  * @param	exit_code
  * @return	exit_code
  */
-int	ft_errmsg(const char *msg, const char *detail, int exit_code);
+int		ft_errmsg(const char *msg, const char *detail, int exit_code);
 
-#endif
+#endif /* UTILS_H */
