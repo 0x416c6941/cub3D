@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 13:05:10 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 15:17:33 by hlyshchu         ###   ########.fr       */
+/*   Created: 2025/01/21 14:53:49 by hlyshchu          #+#    #+#             */
+/*   Updated: 2025/01/21 15:00:29 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
-
-# include <cub3D.h>
-# include <parse.h>
-
- 
+#include <utils.h>
 
 /**
- * Parses file at \p file_path and saves parsed information to \p out.
- * @param	file_path	Path to a .cub file.
- * @param	out			Output.
- * @return (-1, if something went wrong. errno will also be set);
- * 			Some non-negative value, if everything went fine.
+ * Returns true if the character `c` is a whitespace, otherwise false.
  */
-int	ft_parse(const char *file_path, struct s_args *out);
-
-#endif /* PARSE_H */
+bool ft_isspace(char c)
+{
+    return (c == ' ' || (c >= 9 && c <= 13));
+}

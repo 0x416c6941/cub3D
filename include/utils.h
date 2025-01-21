@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/20 14:37:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:00:38 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <errno.h>
 # include <libft.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <unistd.h>
 
@@ -32,5 +33,11 @@
  * @return int exit_code
  */
 int	ft_errmsg(const char *msg, const char *detail, int exit_code);
+
+/**
+ * Returns true if the character `c` is a whitespace, otherwise false.
+ */
+bool ft_isspace(char c);
+
 
 #endif
