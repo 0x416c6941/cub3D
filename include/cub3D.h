@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 16:09:42 by hlyshchu         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:19:59 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
  */
 # define FATAL_ERROR -1
 # define ERR_USAGE "usage: ./cub3d <path/to/map.cub>"
-// parameter which is not he map and we can't identify 
+/* parameter which is not he map and we can't identify */
 # define INV_PAR 1
-// one of parameter is duplicated
+/* one of parameter is duplicated */
 # define DUP_PAR 2
 /**
  * ----------------------------------------------------------------------------
@@ -75,8 +75,44 @@ typedef struct s_args
 typedef struct s_data
 {
 	void	*conn;
-	void	*winn;
+	void	*win;
 	void	*textures[TEXTURES_SIZE];
 }	t_data;
+
+/**
+ * ----------------------------------------------------------------------------
+ * Functions.
+ * ----------------------------------------------------------------------------
+ */
+/**
+ * Parses file at \p file_path and saves parsed information to \p out.
+ * @param	file_path	Path to a .cub file.
+ * @param	out			Output.
+ * @return	-1, if something went wrong. errno will also be set;
+ * 			Some non-negative value, if everything went fine.
+ */
+int		ft_parse(const char *file_path, struct s_args *out);
+
+/**
+ * Frees content of \p to_free.
+ * @param	to_free	Parsed arguments to free().
+ */
+void	ft_free_s_args_content(struct s_args *to_free);
+
+/**
+ * Prepares MLX: opens the connection, window, reads all textures from \p args;
+ * and also prepares all other data required for cub3D, e.g. user's base coords.
+ * @param	args	Parsed arguments.
+ * @param	data	Where to save MLX connection, window and textures.
+ * @return	-1, if something went wrong. errno will also be set;
+ * 			Some non-negative value, if everything went fine.
+ */
+int		ft_prep_data(const struct s_args *args, struct s_data *data);
+
+/**
+ * Frees content of \p to_free.
+ * @param	to_free	cub3D's data to free().
+ */
+void	ft_free_s_data_content(struct s_data *to_free);
 
 #endif /* CUB3D_H */
