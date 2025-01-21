@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 16:19:59 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:50:10 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_rgb
 	unsigned short	r;
 	unsigned short	g;
 	unsigned short	b;
-}					t_rgb;
+}	t_rgb;
 
 /**
  * Every node of \ref map contains a string (a row) of a map.
@@ -62,11 +62,17 @@ typedef struct s_rgb
  */
 typedef struct s_args
 {
-	int				map_info_added;
-	char			*textures[TEXTURES_SIZE];
-	t_rgb			colors[COLORS_SIZE];
-	t_list			*map;
-}					t_args;
+	int			map_info_added;
+	char		*textures[TEXTURES_SIZE];
+	t_rgb		colors[COLORS_SIZE];
+	t_list		*map;
+}	t_args;
+
+typedef struct s_coords
+{
+	double	x;
+	double	y;
+}	t_coords;
 
 /**
  * Mainly MLX data, but also player's position,
@@ -74,9 +80,12 @@ typedef struct s_args
  */
 typedef struct s_data
 {
-	void	*conn;
-	void	*win;
-	void	*textures[TEXTURES_SIZE];
+	void		*conn;
+	void		*win;
+	void		*textures[TEXTURES_SIZE];
+	t_rgb		colors[COLORS_SIZE];
+	t_list		*map;
+	t_coords	player;
 }	t_data;
 
 /**
@@ -107,7 +116,7 @@ void	ft_free_s_args_content(struct s_args *to_free);
  * @return	-1, if something went wrong. errno will also be set;
  * 			Some non-negative value, if everything went fine.
  */
-int		ft_prep_data(const struct s_args *args, struct s_data *data);
+int		ft_prep_data(struct s_args *args, struct s_data *data);
 
 /**
  * Frees content of \p to_free.
