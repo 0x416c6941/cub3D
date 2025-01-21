@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 16:27:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:39:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <libft.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <unistd.h>
 
 static int	ft_save_textures(char *line, struct s_args *out, int identifier)
@@ -99,15 +100,17 @@ static int	ft_read_file_to_struct(int fd, struct s_args *out)
 int	ft_parse(const char *file_path, struct s_args *out)
 {
 	int	file;
+	int	errnobuf;
 
 	file = open(file_path, O_RDONLY);
 	if (file == -1)
 		return (-1);
-	(void)ft_memset(out, 0, sizeof(struct s_args));
-	if (ft_read_file_to_struct(file, out) == -1)
+	else if (ft_read_file_to_struct(file, out) == -1)
 	{
-		close(file);
-		return (-1);
+		errnobuf = errno;
+		if (close(file) == -1)
+			return (-1);
+		return (errno = errnobuf, -1);
 	}
 	close(file);
 	return (0);
