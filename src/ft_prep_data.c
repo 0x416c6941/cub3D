@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 15:16:36 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:26:49 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,35 @@
 static int	ft_prep_mlx_read_textures(const struct s_args *args,
 					struct s_data *data)
 {
-	int	i;
+	int	i, errnobuf, discard, j;
 
 	i = 0;
+	while (i < TEXTURES_SIZE)
+	{
+		data->textures[i] = mlx_xpm_file_to_image(data->conn,
+			args->textures[i], &discard, &discard);
+		if (data->textures[i] == NULL)
+		{
+			errnobuf = *errno;
+			j = 0;
+			while (j < i)
+			{
+				(void)mlx_destroy_image(data->conn, data->textures[j]);
+				data->textures[j++] = NULL;
+			}
+			if (errnobuf == 0)
+				errnobuf = EACCES;
+			return ((void)mlx_destroy_window(data->conn, data->win),
+				data->win = NULL, (void)mlx_destroy_display(data->conn),
+				free(data->conn), data->conn = NULL, *errno = errnobuf, -1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 /**
- * X11 is unique, since it doesn't set errno.
- * Therefore, if something failed within X11 (errno isn't set to ENOMEM),
- * we'll just set errno to EACCES.
+ * If after some X11 function failed errno is set 0, we'll set it to EACCES.
  */
 int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 {
@@ -57,7 +77,7 @@ int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 	data->conn = mlx_init();
 	if (data->conn == NULL)
 	{
-		if (*errno != ENOMEM)
+		if (*errno == 0)
 			*errno = EACCES;
 		return (-1);
 	}
@@ -68,9 +88,9 @@ int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 		mlx_destroy_display(data->conn);
 		free(data->conn);
 		data->conn = NULL;
-		*errno = EACCES;
-		if (errnobuf == ENOMEM)
-			*errno = ENOMEM;
+		*errno = errnobuf;
+		if (errnobuf == 0)
+			*errno = EACCES;
 		return (-1);
 	}
 	return (ft_prep_mlx_read_textures(args, data));
