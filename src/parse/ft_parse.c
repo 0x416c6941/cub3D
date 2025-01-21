@@ -6,59 +6,44 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 15:59:58 by hlyshchu         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:27:37 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <parse.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_parse(const char *file_path, struct s_args *out)
+static int	ft_save_textures(char *line, struct s_args *out, int identifier)
 {
-	int	file;
-
-	file = open(file_path, O_RDONLY);
-	if (file == -1)
+	if (!line || !out || identifier < 0 || identifier >= TEXTURES_SIZE)
 		return (-1);
-	(void)ft_memset(out, 0, sizeof(struct s_args));
-	if (ft_read_file_to_struct(file, out) == -1)
-	{
-		close(file);
-		return (-1);
-	}
-	close(file);
-	return (0);
-}
-
-int ft_save_textures(char *line, struct s_args *out, int identifier)
-{
-    if (!line || !out || identifier < 0 || identifier >= TEXTURES_SIZE)
-        return (-1);
 	if (out->textures[identifier])
 	{
 		errno = DUP_PAR;
-		return(-1);
+		return (-1);
 	}
-    out->textures[identifier] = ft_strdup(line);  
-    if (!out->textures[identifier])
-        return (-1);  
-    out->map_info_added++;
-    return (0);
+	out->textures[identifier] = ft_strdup(line);
+	if (!out->textures[identifier])
+		return (-1);
+	out->map_info_added++;
+	return (0);
 }
 
-
-int	ft_save_colors(char *line, struct s_args *out, int identifier)
+static int	ft_save_colors(char *line, struct s_args *out, int identifier)
 {
 	if (!line || !out)
 		return (-1);
+	// To temporarily bypass compilation error:
+	(void)identifier;
 	// out->colors[identifier] = line;
 	out->map_info_added++;
 	return (0);
 }
 
-int	ft_line_manager(char *line, struct s_args *out)
+static int	ft_line_manager(char *line, struct s_args *out)
 {
 	char	*trimmed;
 
@@ -90,7 +75,7 @@ int	ft_line_manager(char *line, struct s_args *out)
 	return (-1);
 }
 
-int	ft_read_file_to_struct(int fd, struct s_args *out)
+static int	ft_read_file_to_struct(int fd, struct s_args *out)
 {
 	char	*line;
 
@@ -107,4 +92,23 @@ int	ft_read_file_to_struct(int fd, struct s_args *out)
 	}
 	if (line)
 		free(line);
+	// Temporarily to bypass compilation error (no return value before):
+	return (0);
+}
+
+int	ft_parse(const char *file_path, struct s_args *out)
+{
+	int	file;
+
+	file = open(file_path, O_RDONLY);
+	if (file == -1)
+		return (-1);
+	(void)ft_memset(out, 0, sizeof(struct s_args));
+	if (ft_read_file_to_struct(file, out) == -1)
+	{
+		close(file);
+		return (-1);
+	}
+	close(file);
+	return (0);
 }
