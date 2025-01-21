@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 14:35:48 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:46:50 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,20 @@ typedef struct s_data
 	void	*winn;
 	void	*textures[TEXTURES_SIZE];
 }	t_data;
+
+/**
+ * ----------------------------------------------------------------------------
+ * Functions.
+ * ----------------------------------------------------------------------------
+ */
+/**
+ * Prepares MLX: opens the connection, window
+ * and reads all textures from \p args.
+ * @param	args	Parsed arguments.
+ * @param	data	Where to save MLX connection, window and textures.
+ * @return	-1, if something went wrong. errno will also be set;
+ * 			Some non-negative value, if everything went fine.
+ */
+int	ft_prep_mlx(const struct s_args *args, struct s_data *data);
 
 #endif /* CUB3D_H */
