@@ -10,7 +10,7 @@ INC_DIR = include
 # Source files.
 SRC_DIR = src
 SRC_FILES = main.c															\
-			utils/ft_errmsg.c												\
+			utils/ft_errmsg.c utils/ft_get_map_row.c						\
 			parse/ft_parse.c												\
 			init/ft_prep_data.c init/ft_free_s_args_content.c				\
 			init/ft_free_s_data_content.c

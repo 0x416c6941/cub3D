@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 16:10:16 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:07:36 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stddef.h>
 #include <mlx.h>
 #include <stdlib.h>
+#include <utils.h>
 
 /**
  * We can't get display's dimensions through MLX,
@@ -88,10 +89,42 @@ static int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 	}
 	return (ft_prep_mlx_read_textures(args, data));
 }
+ 
+/**
+ * Sets the player coordinates based on values in \p data->map.
+ * @param	data	cub3D's data.
+ */
+static void	ft_init_player(struct s_data *data)
+{
+	const int	map_size = ft_lstsize(data->map);
+	int			i;
+	const char	*current_row;
+	int			j;
 
-int	ft_prep_data(const struct s_args *args, struct s_data *data)
+	i = 0;
+	while (i < map_size)
+	{
+		current_row = ft_get_map_row(data->map, i);
+		j = 0;
+		while (current_row[j] != '\0')
+		{
+			if (current_row[j] == 'N' || current_row[j] == 'S'
+				|| current_row[j] == 'E' || current_row[j] == 'W')
+			{
+				data->player.x = j;
+				data->player.y = i;
+				return;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	ft_prep_data(struct s_args *args, struct s_data *data)
 {
 	int	errnobuf;
+	int	i;
 
 	if (ft_prep_mlx(args, data) == -1)
 	{
@@ -102,5 +135,15 @@ int	ft_prep_data(const struct s_args *args, struct s_data *data)
 		errno = errnobuf;
 		return (-1);
 	}
+	i = 0;
+	while (i < COLORS_SIZE)
+	{
+		data->colors[i] = args->colors[i];
+		(void)ft_memset(&args->colors + i, 0, sizeof(struct s_rgb));
+		i++;
+	}
+	data->map = args->map;
+	args->map = NULL;
+	ft_init_player(data);
 	return (0);
 }
