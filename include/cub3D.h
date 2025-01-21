@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 13:45:44 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:35:48 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_rgb
 
 /**
  * Every node of \ref map contains a string (a row) of a map.
+ * Parser will save information here.
  */
 typedef struct s_args
 {
@@ -61,5 +62,16 @@ typedef struct s_args
 	t_rgb	colors[COLORS_SIZE];
 	t_list	*map;
 }	t_args;
+
+/**
+ * Mainly MLX data, but also player's position,
+ * floor's and ceiling's colors, map, etc.
+ */
+typedef struct s_data
+{
+	void	*conn;
+	void	*winn;
+	void	*textures[TEXTURES_SIZE];
+}	t_data;
 
 #endif /* CUB3D_H */
