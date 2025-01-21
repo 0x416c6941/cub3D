@@ -6,12 +6,14 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 13:17:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:45:44 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# include <libft.h>
 
 /**
  * ----------------------------------------------------------------------------
@@ -50,10 +52,14 @@ typedef struct s_rgb
 	unsigned short	b;
 }	t_rgb;
 
+/**
+ * Every node of \ref map contains a string (a row) of a map.
+ */
 typedef struct s_args
 {
 	char	*textures[TEXTURES_SIZE];
 	t_rgb	colors[COLORS_SIZE];
+	t_list	*map;
 }	t_args;
 
 #endif /* CUB3D_H */
