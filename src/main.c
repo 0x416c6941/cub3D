@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 15:03:27 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:46:54 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
  */
 static int	ft_tmp_init_args_norminette(struct s_args *args)
 {
-	const char *const	rows[] = {"11111", "1N001", "10001", "11111", NULL};
+	const char *const	rows[] = {"11111", "1S001", "10101", "11111", NULL};
 	size_t				i;
 	char				*row;
 	t_list				*node;
