@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 23:18:44 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:15:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,6 @@ static int	ft_tmp_init_args(struct s_args *args)
 	if (ft_parse(*(++argv), &args) == -1
 		|| ft_prep_data(&args, &data) == -1)
 		...
- * This will also be required to handle
- * window resizing and other possible events:
- * mlx_hook(data.win, Expose, ExposureMask, RENDERFUNC, &data);
  */
 int	main(int argc, char **argv)
 {
@@ -114,6 +111,7 @@ int	main(int argc, char **argv)
 	ft_free_s_args_content(&args);
 	(void)ft_render(&data);
 	(void)mlx_key_hook(data.win, ft_handle_keysyms, &data);
+	(void)mlx_expose_hook(data.win, ft_render, &data);
 	(void)mlx_hook(data.win, DestroyNotify, NoEventMask, ft_mlx_exit, &data);
 	(void)mlx_loop(data.conn);
 	return (0);
