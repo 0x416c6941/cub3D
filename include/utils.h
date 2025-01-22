@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 14:48:30 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:05:27 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_get_map_row(t_list *map, int idx);
  * Frees all data in \p data and exits the program.
  * This function, if called, will NEVER return.
  * @param	data	cub3D's data.
- * @return	No value will ever be returned.
+ * @return	No value will ever be returned. Safe to ignore.
  * 			If exit() fails for some REALLY weird reason, -1 will be returned.
  */
 int		ft_mlx_exit(struct s_data *data);

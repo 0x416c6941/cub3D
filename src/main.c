@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 14:54:57 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:03:27 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <init.h>
 #include <stdio.h>
 #include <mlx.h>
+#include <controls.h>
 #include <X11/X.h>
 #include <stdlib.h>
 #include <stddef.h>
@@ -110,6 +111,7 @@ int	main(int argc, char **argv)
 		return (perror("cub3D"), ft_free_s_args_content(&args),
 			ft_free_s_data_content(&data), EXIT_FAILURE);
 	ft_free_s_args_content(&args);
+	mlx_key_hook(data.win, ft_handle_keysyms, &data);
 	mlx_hook(data.win, DestroyNotify, NoEventMask, ft_mlx_exit, &data);
 	mlx_loop(data.conn);
 	return (0);
