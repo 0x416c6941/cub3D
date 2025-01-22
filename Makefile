@@ -14,7 +14,7 @@ SRC_FILES = main.c							\
 		parse/ft_parse.c					\
 		init/init.c init/free_content.c init/utils.c		\
 		controls.c						\
-		render/ft_render.c
+		render/ft_render.c render/utils.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 
