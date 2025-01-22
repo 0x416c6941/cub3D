@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 17:22:39 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:02:59 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,13 @@ char	*ft_get_map_row(t_list *map, int idx);
  * 			If exit() fails for some REALLY weird reason, -1 will be returned.
  */
 int		ft_mlx_exit(struct s_data *data, int exit_code);
+
+/**
+ * If \p angle is out of range of [0, 2 * M_PI], sets it to be in that range.
+ * Otherwise doesn't change it.
+ * @param	angle	Angle to iniitialize.
+ * @return	Initialized angle.
+ */
+double	ft_initialize_angle(double angle);
 
 #endif /* UTILS_H */

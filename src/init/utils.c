@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:17:33 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 18:47:04 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:06:28 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <math.h>
 
 /**
- * May be required to access some defines, like M_PI on older platforms.
+ * May be required to access some defines (like M_PI) on older platforms.
  */
 #define _USE_MATH_DEFINES
 

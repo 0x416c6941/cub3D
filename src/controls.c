@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 18:18:20 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:05:52 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,11 @@ static void	ft_handle_movement(int keycode, struct s_data *data)
 static void	ft_handle_angle(int keycode, struct s_data *data)
 {
 	if (keycode == XKB_KEY_Left)
-	{
-		data->player_angle.angle += ANGLE_EPS;
-		if (data->player_angle.angle > 2 * M_PI)
-			data->player_angle.angle -= 2 * M_PI;
-	}
+		data->player_angle.angle = ft_initialize_angle(data->player_angle.angle
+				+ ANGLE_EPS)
 	else if (keycode == XKB_KEY_Right)
-	{
-		data->player_angle.angle -= ANGLE_EPS;
-		if (data->player_angle.angle < 0)
-			data->player_angle.angle += 2 * M_PI;
-	}
+		data->player_angle.angle = ft_initialize_angle(data->player_angle.angle
+				- ANGLE_EPS)
 	ft_calculate_angle_deltas(data);
 }
 

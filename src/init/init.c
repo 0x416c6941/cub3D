@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 19:54:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:04:33 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define BLOCK_Y_MIDDLE	64
 
 /**
- * May be required to access some defines, like M_PI on older platforms.
+ * May be required to access some defines (like M_PI) on older platforms.
  */
 #define _USE_MATH_DEFINES
 

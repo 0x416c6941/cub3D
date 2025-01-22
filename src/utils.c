@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:42:28 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 18:50:45 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:05:05 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 #include <cub3D.h>
 #include <init.h>
 #include <stdlib.h>
+#include <math.h>
+
+/**
+ * May be required to access some defines (like M_PI) on older platforms.
+ */
+#define _USE_MATH_DEFINES
 
 int	ft_errmsg(const char *msg, const char *detail, int exit_code)
 {
@@ -61,4 +67,13 @@ int	ft_mlx_exit(struct s_data *data, int exit_code)
 	ft_free_s_data_content(data);
 	exit(exit_code);
 	return (-1);
+}
+
+double	ft_initialize_angle(double angle)
+{
+	if (angle > 2 * M_PI)
+		return (angle - 2 * M_PI);
+	else if (angle < 0)
+		return (angle + 2 * M_PI);
+	return (angle);
 }
