@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 21:03:32 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:06:13 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@
  * May be required to access some defines (like M_PI) on older platforms.
  */
 #define _USE_MATH_DEFINES
-
-/**
- * Degrees (in radians) for north, south, east and west respectively.
- * For evaluator: those are stored in .rodata segment and can't be changed.
- * They are purely constant, any attempts
- * to change them would result in a segfault.
- */
-const double	g_up = M_PI / 2;
-const double	g_down = M_PI / 2 * 3;
-const double	g_right = M_PI * 2;
-const double	g_left = M_PI;
 
 /**
  * Norminette bypass. Reads textures and saves them to \p data.
@@ -114,19 +103,19 @@ static void	ft_init_player_angle(struct s_data *data, char direction)
 {
 	if (direction == 'N')
 	{
-		data->player_angle.angle = g_up;
+		data->player_angle.angle = UP;
 	}
 	else if (direction == 'S')
 	{
-		data->player_angle.angle = g_down;
+		data->player_angle.angle = DOWN;
 	}
 	else if (direction == 'E')
 	{
-		data->player_angle.angle = g_right;
+		data->player_angle.angle = RIGHT;
 	}
 	else if (direction == 'W')
 	{
-		data->player_angle.angle = g_left;
+		data->player_angle.angle = LEFT;
 	}
 	ft_calculate_angle_deltas(data);
 }

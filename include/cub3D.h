@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 21:04:48 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:09:57 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@
 # define BLOCK_Y	128
 
 /**
+ * Degrees (in radians) for north, south, east and west respectively.
+ */
+# define UP		1.57079632679
+# define DOWN	4.71238898038
+# define RIGHT	6.28318530718
+# define LEFT	3.14159265359
+
+/**
  * Values returned by cos(), sin()
  * and other trigonometric functions may be too small.
  * To fix that, we'll amplify their return values.
@@ -75,17 +83,6 @@
 # define INV_PAR 1
 /* one of parameter is duplicated */
 # define DUP_PAR 2
-
-/**
- * Degrees (in radians) for north, south, east and west respectively.
- * For evaluator: those are stored in .rodata segment and can't be changed.
- * They are purely constant, any attempts
- * to change them would result in a segfault.
- */
-extern const double	g_up;
-extern const double	g_down;
-extern const double	g_right;
-extern const double	g_left;
 
 /**
  * ----------------------------------------------------------------------------
