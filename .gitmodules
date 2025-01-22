@@ -1,6 +1,3 @@
-[submodule "external/Libft"]
-	path = external/Libft
-	url = https://github.com/0x416c6941/Libft.git
 [submodule "external/minilibx-linux"]
 	path = external/minilibx-linux
 	url = https://github.com/42Paris/minilibx-linux.git
