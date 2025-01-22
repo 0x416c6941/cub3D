@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 17:32:31 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:35:10 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_data
 	void		*textures[TEXTURES_SIZE];
 	t_rgb		colors[COLORS_SIZE];
 	t_list		*map;
+	t_coords	map_size;
 	t_coords	player;
 	t_angle		player_angle;
 }	t_data;

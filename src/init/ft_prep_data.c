@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 16:18:36 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:37:49 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,12 @@ static void	ft_init_player_angle(struct s_data *data, char direction)
  */
 static void	ft_init_player(struct s_data *data)
 {
-	const int	map_size = ft_lstsize(data->map);
 	int			i;
 	const char	*current_row;
 	int			j;
 
 	i = 0;
-	while (i < map_size)
+	while (i < data->map_size.y)
 	{
 		current_row = ft_get_map_row(data->map, i);
 		j = 0;
@@ -175,6 +174,8 @@ int	ft_prep_data(struct s_args *args, struct s_data *data)
 	}
 	data->map = args->map;
 	args->map = NULL;
+	data->map_size.x = ft_strlen((const char *)data->map->content);
+	data->map_size.y = ft_lstsize(data->map);
 	ft_init_player(data);
 	return (0);
 }
