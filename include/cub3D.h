@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 15:12:46 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:10:47 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@
  * Every block's (place on map) coordinate will be 128x128 units wide.
  * All images (textures) will also be cropped
  * or extended (with black spaces) to those dimensions.
+ * It's not stated in the subject, that we need to change those values
+ * depending on what's set in width or height
+ * after we run mlx_xpm_file_to_image().
  */
 # define BLOCK_X	128
 # define BLOCK_Y	128
