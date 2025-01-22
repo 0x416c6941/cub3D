@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 20:59:58 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:33:04 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,39 @@
 #include <stdlib.h>
 #include <utils.h>
 
+#define BEGINNING	0
+
+/**
+ * Draws a ceiling and floor (defined in \p data) to \p img.
+ * @param	data	cub3D's data.
+ * @param	img		Image to draw them.
+ */
+static void	ft_draw_ceiling_and_floor(struct s_data *data,
+		struct s_img *img)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < img->height / 2)
+	{
+		j = 0;
+		while (j < img->width)
+			ft_pixel_put_on_image(img, j++, i, &data->colors[COLOR_CEILING]);
+		i++;
+	}
+	while (i < img->height)
+	{
+		j = 0;
+		while (j < img->width)
+			ft_pixel_put_on_image(img, j++, i, &data->colors[COLOR_FLOOR]);
+		i++;
+	}
+}
+
 int	ft_render(struct s_data *data)
 {
-	t_img	img;
+	struct s_img	img;
 
 	img.img = mlx_new_image(data->conn, WIN_X, WIN_Y);
 	if (img.img == NULL)
@@ -34,6 +64,9 @@ int	ft_render(struct s_data *data)
 	img.height = WIN_Y;
 	img.img_pixels = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.size_line, &img.endianness);
+	ft_draw_ceiling_and_floor(data, &img);
+	(void)mlx_put_image_to_window(data->conn, data->win, img.img,
+		BEGINNING, BEGINNING);
 	(void)mlx_destroy_image(data->conn, img.img);
 	return (0);
 }
