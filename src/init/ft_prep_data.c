@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 18:07:36 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:03:55 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 	}
 	return (ft_prep_mlx_read_textures(args, data));
 }
- 
+
 /**
  * Sets the player coordinates based on values in \p data->map.
  * @param	data	cub3D's data.
