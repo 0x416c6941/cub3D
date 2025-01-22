@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 14:13:27 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:35:09 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,22 @@ static void	ft_init_player_angle(struct s_data *data, char direction)
 {
 	if (direction == 'N')
 	{
-		data->player_angle = M_PI / 2;
+		data->player_angle.angle = M_PI / 2;
 	}
 	else if (direction == 'S')
 	{
-		data->player_angle = M_PI / 2 * 3;
+		data->player_angle.angle = M_PI / 2 * 3;
 	}
 	else if (direction == 'E')
 	{
-		data->player_angle = M_PI * 2;
+		data->player_angle.angle = M_PI * 2;
 	}
 	else if (direction == 'W')
 	{
-		data->player_angle = M_PI;
+		data->player_angle.angle = M_PI;
 	}
+	data->player_angle.delta_x = cos(data->player_angle.angle) * TF_AMP;
+	data->player_angle.delta_y = sin(data->player_angle.angle) * TF_AMP;
 }
 
 /**

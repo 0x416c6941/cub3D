@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 14:05:44 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:34:45 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /**
  * This file contains different constants and structure definitions.
+ * Thanks a lot to @3DSage. Their resources and guides were really useful!
  */
 
 # include <libft.h>
@@ -45,6 +46,13 @@
  */
 # define BLOCK_X	128
 # define BLOCK_Y	128
+
+/**
+ * Values returned by cos(), sin()
+ * and other trigonometric functions may be too small.
+ * To fix that, we'll amplify their return values.
+ */
+# define TF_AMP	5
 
 /**
  * For system crashes: malloc, write...
@@ -87,6 +95,17 @@ typedef struct s_coords
 }	t_coords;
 
 /**
+ * Everything here will be measured in radians.
+ * \ref delta_x and \ref delta_y are required for moving.
+ */
+typedef struct	s_angle
+{
+	double	angle;
+	double	delta_x;
+	double	delta_y;
+}	t_angle;
+
+/**
  * Mainly MLX data, but also player's position,
  * floor's and ceiling's colors, map, etc.
  */
@@ -98,7 +117,7 @@ typedef struct s_data
 	t_rgb		colors[COLORS_SIZE];
 	t_list		*map;
 	t_coords	player;
-	double		player_angle;				/* Will be measured in radians. */
+	t_angle		player_angle;
 }	t_data;
 
 #endif /* CUB3D_H */
