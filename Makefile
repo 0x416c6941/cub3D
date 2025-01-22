@@ -13,7 +13,8 @@ SRC_FILES = main.c							\
 		utils/ft_errmsg.c utils/ft_get_map_row.c		\
 		utils/ft_mlx_exit.c					\
 		parse/ft_parse.c					\
-		init/ft_prep_data.c init/ft_free_s_args_content.c	\
+		init/ft_free_s_args_content.c				\
+		init/ft_calculate_angle_deltas.c init/ft_prep_data.c	\
 		init/ft_free_s_data_content.c				\
 		controls.c
 
