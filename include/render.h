@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 19:22:46 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:57:02 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,36 +21,9 @@
  * ----------------------------------------------------------------------------
  */
 /**
- * Needed for precision.
+ * To cast a horizontal ray upwards.
  */
-# define FOR_ACC	0.0001
-/**
- * Used for casting rays.
- */
-# define RAY_OFFSET	64
-
-/**
- * ----------------------------------------------------------------------------
- * Structures.
- * ----------------------------------------------------------------------------
- */
-/**
- * Data required for renderer to work.
- */
-typedef struct s_render
-{
-	/**
-	 * MLX stuff.
-	 */
-	void	*image;
-	char	*image_pixels;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endianness;		/* We don't care about it tho. */
-	/**
-	 * For ray casting.
-	 */
-}	t_render;
+# define FOR_PRECISION	0.0001
 
 /**
  * ----------------------------------------------------------------------------

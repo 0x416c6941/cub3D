@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:38:00 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 18:46:24 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:04:14 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ void	ft_free_s_data_content(struct s_data *to_free)
 	i = 0;
 	while (i < TEXTURES_SIZE)
 	{
-		if (to_free->textures[i] != NULL)
+		if (to_free->textures[i].img != NULL)
 		{
-			mlx_destroy_image(to_free->conn, to_free->textures[i]);
-			to_free->textures[i] = NULL;
+			mlx_destroy_image(to_free->conn, to_free->textures[i].img);
+			to_free->textures[i].img = NULL;
+			to_free->textures[i].img_pixels = NULL;
 		}
 		i++;
 	}

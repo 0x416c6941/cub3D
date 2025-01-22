@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 20:04:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:03:32 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,22 @@ static int	ft_prep_mlx_read_textures(const struct s_args *args,
 					struct s_data *data)
 {
 	int	i;
-	int	discard;
 
 	i = 0;
 	while (i < TEXTURES_SIZE)
 	{
-		data->textures[i] = mlx_xpm_file_to_image(data->conn,
-				args->textures[i], &discard, &discard);
-		if (data->textures[i] == NULL)
+		data->textures[i].img = mlx_xpm_file_to_image(data->conn,
+				args->textures[i],
+				&data->textures[i].width, &data->textures[i].height);
+		if (data->textures[i].img == NULL)
 		{
 			if (errno == 0)
 				errno = EACCES;
 			return (-1);
 		}
+		data->textures[i].img_pixels = mlx_get_data_addr(data->textures[i].img,
+				&data->textures[i].bits_per_pixel,
+				&data->textures[i].size_line, &data->textures[i].endianness);
 		i++;
 	}
 	return (0);
@@ -177,7 +180,6 @@ int	ft_prep_data(struct s_args *args, struct s_data *data)
 	while (i < COLORS_SIZE)
 	{
 		data->colors[i] = args->colors[i];
-		(void)ft_memset(&args->colors[i], 0, sizeof(struct s_rgb));
 		i++;
 	}
 	data->map = args->map;

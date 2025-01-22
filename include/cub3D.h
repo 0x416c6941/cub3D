@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 19:55:21 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 21:04:48 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,20 @@ typedef struct s_args
 	t_list		*map;
 }	t_args;
 
+/**
+ * MLX stuff.
+ */
+typedef struct s_img
+{
+	void	*img;
+	int		width;
+	int		height;
+	char	*img_pixels;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endianness;		/* We don't care about it tho. */
+}	t_img;
+
 typedef struct s_coords
 {
 	int	x;
@@ -128,6 +142,9 @@ typedef struct s_coords
 typedef struct s_angle
 {
 	double	angle;
+	/**
+	 * For movements (not required, but they make everything easier).
+	 */
 	double	delta_x;
 	double	delta_y;
 }	t_angle;
@@ -140,7 +157,7 @@ typedef struct s_data
 {
 	void		*conn;
 	void		*win;
-	void		*textures[TEXTURES_SIZE];
+	t_img		textures[TEXTURES_SIZE];
 	t_rgb		colors[COLORS_SIZE];
 	t_list		*map;
 	t_coords	map_size;
