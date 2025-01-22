@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 18:46:12 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:20:01 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@
 #include <stdlib.h>
 #include <utils.h>
 #include <math.h>
-
-/**
- * We can't get display's dimensions through MLX,
- * so we'll just window's dimensions to HD.
- */
-#define WIN_X	1280
-#define WIN_Y	720
 
 /**
  * cub3D.h -> BLOCK_X / 2, BLOCK_Y / 2.

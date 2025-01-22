@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 18:35:10 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:20:15 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 /**
  * This file contains different constants and structure definitions.
  * Thanks a lot to @3DSage. Their resources and guides were really useful!
+ * Also thanks to Oceano (@suspectedoceano)
+ * for showing tricks on how to work with MLX efficiently!
  */
 
 # include <libft.h>
@@ -38,6 +40,13 @@
 # define COLORS_SIZE 2
 # define COLOR_FLOOR 0
 # define COLOR_CEILING 1
+
+/**
+ * We can't get display's dimensions through MLX,
+ * so we'll just window's dimensions to HD.
+ */
+#define WIN_X	1280
+#define WIN_Y	720
 
 /**
  * Every block's (place on map) coordinate will be 128x128 units wide.
