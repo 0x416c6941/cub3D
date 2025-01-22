@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 12:03:55 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:05:39 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void	ft_init_player(struct s_data *data)
 			{
 				data->player.x = j;
 				data->player.y = i;
-				return;
+				return ;
 			}
 			j++;
 		}
