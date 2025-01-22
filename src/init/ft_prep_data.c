@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 12:05:39 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:16:43 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	ft_prep_data(struct s_args *args, struct s_data *data)
 	while (i < COLORS_SIZE)
 	{
 		data->colors[i] = args->colors[i];
-		(void)ft_memset(&args->colors + i, 0, sizeof(struct s_rgb));
+		(void)ft_memset(&args->colors[i], 0, sizeof(struct s_rgb));
 		i++;
 	}
 	data->map = args->map;
