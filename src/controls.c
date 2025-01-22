@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 16:40:02 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:23:35 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <cub3D.h>
 #include <xkbcommon/xkbcommon-keysyms.h>
 #include <utils.h>
+#include <stdlib.h>
 #include <math.h>
 #include <init.h>
 
@@ -72,7 +73,7 @@ static void	ft_handle_angle(int keycode, struct s_data *data)
 int	ft_handle_keysyms(int keycode, struct s_data *data)
 {
 	if (keycode == XKB_KEY_Escape)
-		(void)ft_mlx_exit(data);
+		(void)ft_mlx_exit(data, EXIT_SUCCESS);
 	else if ((keycode == XKB_KEY_W || keycode == XKB_KEY_w)
 		|| (keycode == XKB_KEY_A || keycode == XKB_KEY_a)
 		|| (keycode == XKB_KEY_S || keycode == XKB_KEY_s)

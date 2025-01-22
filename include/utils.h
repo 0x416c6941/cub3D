@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 15:05:27 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:22:39 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ int		ft_errmsg(const char *msg, const char *detail, int exit_code);
 char	*ft_get_map_row(t_list *map, int idx);
 
 /**
- * Frees all data in \p data and exits the program.
+ * Frees all data in \p data and exits the program with the \p exit_code.
  * This function, if called, will NEVER return.
- * @param	data	cub3D's data.
+ * @param	data		cub3D's data.
+ * @param	exit_code	Code to exit the program with.
  * @return	No value will ever be returned. Safe to ignore.
  * 			If exit() fails for some REALLY weird reason, -1 will be returned.
  */
-int		ft_mlx_exit(struct s_data *data);
+int		ft_mlx_exit(struct s_data *data, int exit_code);
 
 #endif /* UTILS_H */
