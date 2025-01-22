@@ -5,3 +5,6 @@ This project was developed by:
     <li><i><a href="https://github.com/hlib-lyshchuk">hlyshchu</a></i>, Hlib Lyshchuk "hlib-lyshchuk"</li>
     <li><i><a href="https://github.com/0x416c6941">asagymba</a></i>, Asset Sagymbayev "0x416c6941"</li>
 </ul>
+<br>
+Special thanks to **[mcombeau](https://github.com/mcombeau)**
+for maps and textures!
