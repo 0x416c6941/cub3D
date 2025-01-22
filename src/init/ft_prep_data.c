@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 14:04:15 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:13:27 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <utils.h>
+#include <math.h>
 
 /**
  * We can't get display's dimensions through MLX,
@@ -30,6 +31,11 @@
  */
 #define BLOCK_X_MIDDLE	64
 #define BLOCK_Y_MIDDLE	64
+
+/**
+ * May be required to access some defines, like M_PI on older platforms.
+ */
+#define _USE_MATH_DEFINES
 
 /**
  * Norminette bypass. Reads textures and saves them to \p data.
@@ -89,8 +95,32 @@ static int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 }
 
 /**
+ * Initializes player's angle depending on the \p direction they're looking at.
+ * @param	data		cub3D's data.
+ * @param	direction	Direction player is looking at.
+ */
+static void	ft_init_player_angle(struct s_data *data, char direction)
+{
+	if (direction == 'N')
+	{
+		data->player_angle = M_PI / 2;
+	}
+	else if (direction == 'S')
+	{
+		data->player_angle = M_PI / 2 * 3;
+	}
+	else if (direction == 'E')
+	{
+		data->player_angle = M_PI * 2;
+	}
+	else if (direction == 'W')
+	{
+		data->player_angle = M_PI;
+	}
+}
+
+/**
  * Sets the player coordinates based on values in \p data->map.
- * TODO: Set the player's angle depending on the value 'N', 'S', 'E' or 'W'.
  * @param	data	cub3D's data.
  */
 static void	ft_init_player(struct s_data *data)
@@ -110,8 +140,9 @@ static void	ft_init_player(struct s_data *data)
 			if (current_row[j] == 'N' || current_row[j] == 'S'
 				|| current_row[j] == 'E' || current_row[j] == 'W')
 			{
-				data->player.x = j + BLOCK_X_MIDDLE;
-				data->player.y = i + BLOCK_Y_MIDDLE;
+				data->player.x = j * BLOCK_X + BLOCK_X_MIDDLE;
+				data->player.y = i * BLOCK_Y + BLOCK_Y_MIDDLE;
+				ft_init_player_angle(data, current_row[j]);
 				return ;
 			}
 			j++;

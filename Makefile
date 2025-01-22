@@ -46,7 +46,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIBMLX_A) $(LIBMLX_LINUX_A) $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(OBJ_FILES) -o $@ -L$(LIBFT_DIR) -lft	\
-		-L$(MLX_DIR) -lmlx -lXext -lX11
+		-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)			# Create the $(OBJ_DIR) if it doesn't exist.
