@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:34 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 14:01:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:22:02 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
  * @param	to_free	Parsed arguments to free().
  */
 void	ft_free_s_args_content(struct s_args *to_free);
+
+/**
+ * Calculates delta_x and delta_y in \p data.
+ * @param	data	cub3D's data.
+ */
+void	ft_calculate_angle_deltas(struct s_data *data);
 
 /**
  * Prepares MLX: opens the connection, window, reads all textures from \p args;
