@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:55:03 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 14:03:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:46:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stddef.h>
 #include <mlx.h>
 #include <stdlib.h>
+#include <libft.h>
 
 void	ft_free_s_data_content(struct s_data *to_free)
 {
@@ -41,4 +42,5 @@ void	ft_free_s_data_content(struct s_data *to_free)
 		free(to_free->conn);
 		to_free->conn = NULL;
 	}
+	ft_lstclear(&to_free->map, free);
 }
