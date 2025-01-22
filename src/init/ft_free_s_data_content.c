@@ -6,10 +6,11 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:55:03 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 17:17:52 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:03:33 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <init.h>
 #include <cub3D.h>
 #include <stddef.h>
 #include <mlx.h>

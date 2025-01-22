@@ -6,10 +6,11 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 13:34:41 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:04:15 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <init.h>
 #include <cub3D.h>
 #include <errno.h>
 #include <stddef.h>
@@ -19,25 +20,16 @@
 
 /**
  * We can't get display's dimensions through MLX,
- * we'll just them to HD.
+ * so we'll just window's dimensions to HD.
  */
 #define WIN_X	1280
 #define WIN_Y	720
 
 /**
- * All images will be cropped or extended (with black spaces)
- * to those dimensions.
- * Why? Because I'm lazy to handle different sizes of textures.
- * I hate Norminette enough already.
+ * cub3D.h -> BLOCK_X / 2, BLOCK_Y / 2.
  */
-#define TEXTURE_X	128
-#define TEXTURE_Y	128
-
-/**
- * When we initialize player's coordinates, we want them to stay
- * in the middle of the block they're supposed to stay on.
- */
-#define COORD_MIDDLE	0.5
+#define BLOCK_X_MIDDLE	64
+#define BLOCK_Y_MIDDLE	64
 
 /**
  * Norminette bypass. Reads textures and saves them to \p data.
@@ -118,10 +110,8 @@ static void	ft_init_player(struct s_data *data)
 			if (current_row[j] == 'N' || current_row[j] == 'S'
 				|| current_row[j] == 'E' || current_row[j] == 'W')
 			{
-				data->player.x = j;
-				data->player.x += COORD_MIDDLE;
-				data->player.y = i;
-				data->player.y += COORD_MIDDLE;
+				data->player.x = j + BLOCK_X_MIDDLE;
+				data->player.y = i + BLOCK_Y_MIDDLE;
 				return ;
 			}
 			j++;

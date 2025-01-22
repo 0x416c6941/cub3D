@@ -6,10 +6,11 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/21 16:39:56 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:03:42 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <parse.h>
 #include <cub3D.h>
 #include <fcntl.h>
 #include <libft.h>
