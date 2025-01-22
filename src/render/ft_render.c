@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 19:25:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:43:43 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_render(struct s_data *data)
 {
 	t_render	render_data;
 
-	(void)data;
 	render_data.image = mlx_new_image(data->conn, WIN_X, WIN_Y);
 	if (render_data.image == NULL)
 	{
