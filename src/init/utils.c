@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calculate_angle_deltas.c                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:17:33 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 16:18:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:47:04 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * Useful functions that couldn't be stored
+ * in other source files due to Norminette.
+ */
 
 #include <init.h>
 #include <cub3D.h>
 #include <math.h>
+
+/**
+ * May be required to access some defines, like M_PI on older platforms.
+ */
+#define _USE_MATH_DEFINES
 
 void	ft_calculate_angle_deltas(struct s_data *data)
 {
