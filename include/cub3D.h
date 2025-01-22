@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 19:20:15 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:55:21 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
  * We can't get display's dimensions through MLX,
  * so we'll just window's dimensions to HD.
  */
-#define WIN_X	1280
-#define WIN_Y	720
+# define WIN_X	1280
+# define WIN_Y	720
 
 /**
  * Every block's (place on map) coordinate will be 128x128 units wide.
@@ -75,6 +75,17 @@
 # define INV_PAR 1
 /* one of parameter is duplicated */
 # define DUP_PAR 2
+
+/**
+ * Degrees (in radians) for north, south, east and west respectively.
+ * For evaluator: those are stored in .rodata segment and can't be changed.
+ * They are purely constant, any attempts
+ * to change them would result in a segfault.
+ */
+extern const double	g_up;
+extern const double	g_down;
+extern const double	g_right;
+extern const double	g_left;
 
 /**
  * ----------------------------------------------------------------------------
