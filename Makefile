@@ -10,19 +10,10 @@ INC_DIR = include
 # Source files.
 SRC_DIR = src
 SRC_FILES = main.c							\
-		utils/ft_errmsg.c utils/ft_get_map_row.c		\
-		utils/ft_mlx_exit.c					\
-		utils/ft_check_textures_colors_set.c					\
-		utils/ft_string_isspace.c					\
-		debug/ft_print_t_args.c					\
+	    	utils.c							\
 		parse/ft_parse.c					\
-		parse/ft_save_colors.c					\
-		parse/ft_save_textures.c					\
-		parse/parse_utils.c					\
-		init/ft_free_s_args_content.c				\
-		init/ft_calculate_angle_deltas.c init/ft_prep_data.c	\
-		init/ft_free_s_data_content.c				\
-		controls.c
+		init/init.c init/free_content.c init/utils.c		\
+		controls.c						\
 		render/ft_render.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/,$(SRC_FILES))

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 21:44:38 by root             ###   ########.fr       */
+/*   Updated: 2025/01/22 20:02:59 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <cub3D.h>
 # include <libft.h>
+# include <cub3D.h>
 
 /**
  * ----------------------------------------------------------------------------
@@ -41,46 +41,12 @@
 int		ft_errmsg(const char *msg, const char *detail, int exit_code);
 
 /**
- * @brief Checks if all textures and colors in the `t_args` structure are set.
- *
- * This function verifies that each entry in the `textures` array is non-NULL
- * and each `t_rgb` color in the `colors` array has `setted` set to true.
- *
- * @param args Pointer to the `t_args` structure to check.
- * @return (true if all textures and colors are set); false otherwise.
- */
-bool	check_textures_and_colors_set(t_args *args);
-
-/**
- * @brief Checks if a string contains only white spaces.
- *
- * This function iterates through the string and returns true if all characters
- * are white spaces. Returns false if any non-white-space character is found.
- *
- * @param line Pointer to the input string.
-
- * @return (true if the string contains only white spaces or is empty);
-	false otherwise.
- */
-bool	ft_string_isspace(const char *line);
-
-/**
- * @brief Prints the contents of the `t_args` structure for debugging.
- *
- * This function iterates over the textures, colors, and map stored in the
- * `t_args` structure and prints their values to the console.
- *
- * @param args Pointer to the `t_args` structure to print (non-NULL).
- */
-void	ft_print_t_args(const t_args *args);
-
-/**
  * Gets a row with index \p idx from \p map.
  * @warning	A returned row isn't a copy,
  * 			but a pointer to a content of a map's node.
  * @param	map	Map to get row from.
  * @param	idx	Index of the row.
- * @return (A row with the requested \p idx);
+ * @return	A row with the requested \p idx;
  * 			NULL, if such a row doesn't exist within \p map.
  */
 char	*ft_get_map_row(t_list *map, int idx);
