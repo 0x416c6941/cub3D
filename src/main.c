@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 14:02:49 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:40:16 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <parse.h>
 #include <init.h>
 #include <stdio.h>
+#include <mlx.h>
 #include <stdlib.h>
 #include <stddef.h>
 
@@ -85,6 +86,9 @@ static int	ft_tmp_init_args(struct s_args *args)
 	if (ft_parse(*(++argv), &args) == -1
 		|| ft_prep_data(&args, &data) == -1)
 		...
+ * This will also be required to handle
+ * window resizing and other possible events:
+ * mlx_hook(data.win, Expose, ExposureMask, RENDERFUNC, &data);
  */
 int	main(int argc, char **argv)
 {
@@ -104,7 +108,6 @@ int	main(int argc, char **argv)
 	if (ft_prep_data(&args, &data) == -1)
 		return (perror("cub3D"), ft_free_s_args_content(&args),
 			ft_free_s_data_content(&data), EXIT_FAILURE);
-	while (42)
-		;
+	ft_free_s_args_content(&args);
 	return (0);
 }

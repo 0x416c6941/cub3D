@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:47:38 by root              #+#    #+#             */
-/*   Updated: 2025/01/21 18:00:09 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:48:30 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,21 @@
 # define UTILS_H
 
 # include <libft.h>
+# include <cub3D.h>
 
+/**
+ * ----------------------------------------------------------------------------
+ * Constants.
+ * ----------------------------------------------------------------------------
+ */
 # define CUB_PREFIX "Cub3D: Error: "
 # define WRITE_ERR_MSG "Error write failed."
 
+/**
+ * ----------------------------------------------------------------------------
+ * Functions.
+ * ----------------------------------------------------------------------------
+ */
 /**
  * Add prefix "cub3D: Error" and print to standard error output.
  * \p msg and \p detail can be printed to specify the error.
@@ -39,5 +50,14 @@ int		ft_errmsg(const char *msg, const char *detail, int exit_code);
  * 			NULL, if such a row doesn't exist within \p map.
  */
 char	*ft_get_map_row(t_list *map, int idx);
+
+/**
+ * Frees all data in \p data and exits the program.
+ * This function, if called, will NEVER return.
+ * @param	data	cub3D's data.
+ * @return	No value will ever be returned.
+ * 			If exit() fails for some REALLY weird reason, -1 will be returned.
+ */
+int		ft_mlx_exit(struct s_data *data);
 
 #endif /* UTILS_H */
