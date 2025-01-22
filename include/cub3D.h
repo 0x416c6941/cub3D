@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 17:10:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:32:31 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,13 @@
  */
 typedef struct s_rgb
 {
-	unsigned short	r;
-	unsigned short	g;
-	unsigned short	b;
+	/* One byte for each.
+	 * We suppose that byte is an octet, so:
+	 * unsigned char b; => H(b) = [0, 255].
+	 */
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_rgb;
 
 /**
