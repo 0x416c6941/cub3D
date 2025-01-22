@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 14:34:45 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:12:46 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_coords
  * Everything here will be measured in radians.
  * \ref delta_x and \ref delta_y are required for moving.
  */
-typedef struct	s_angle
+typedef struct s_angle
 {
 	double	angle;
 	double	delta_x;
