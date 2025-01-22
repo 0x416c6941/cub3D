@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 13:16:43 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:34:41 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
  */
 #define TEXTURE_X	128
 #define TEXTURE_Y	128
+
+/**
+ * When we initialize player's coordinates, we want them to stay
+ * in the middle of the block they're supposed to stay on.
+ */
+#define COORD_MIDDLE	0.5
 
 /**
  * Norminette bypass. Reads textures and saves them to \p data.
@@ -92,6 +98,7 @@ static int	ft_prep_mlx(const struct s_args *args, struct s_data *data)
 
 /**
  * Sets the player coordinates based on values in \p data->map.
+ * TODO: Set the player's angle depending on the value 'N', 'S', 'E' or 'W'.
  * @param	data	cub3D's data.
  */
 static void	ft_init_player(struct s_data *data)
@@ -112,7 +119,9 @@ static void	ft_init_player(struct s_data *data)
 				|| current_row[j] == 'E' || current_row[j] == 'W')
 			{
 				data->player.x = j;
+				data->player.x += COORD_MIDDLE;
 				data->player.y = i;
+				data->player.y += COORD_MIDDLE;
 				return ;
 			}
 			j++;
