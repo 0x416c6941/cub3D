@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 20:08:15 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:01:10 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,37 @@
 #include <render.h>
 
 /**
+ * Moves the player to new \p new_x and \p new_y, while handling collision.
+ * @warning	It's up to you to make sure that \p new_x / BLOCK_X
+ * 			and \p new_y / BLOCK_Y aren't out of bounds of the map.
+ * @param	data	cub3D's data.
+ * @param	new_x	Player's new x coordinate.
+ * @param	new_y	Player's new y coordinate.
+ */
+static void	ft_handle_collision(struct s_data *data,
+		int new_x, int new_y)
+{
+	if (new_x < data->player.x
+		&& ft_get_map_row(data->map,
+			data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1')
+		new_x = data->player.x / BLOCK_X * BLOCK_X;
+	else if (new_x > data->player.x
+		&& ft_get_map_row(data->map,
+			data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1')
+		new_x = data->player.x / BLOCK_X * BLOCK_X + (BLOCK_X - 1);
+	if (new_y < data->player.y
+		&& ft_get_map_row(data->map,
+			new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1')
+		new_y = data->player.y / BLOCK_Y * BLOCK_Y;
+	else if (new_y > data->player.y
+		&& ft_get_map_row(data->map,
+			new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1')
+		new_y = data->player.y / BLOCK_Y * BLOCK_Y + (BLOCK_Y - 1);
+	data->player.x = new_x;
+	data->player.y = new_y;
+}
+
+/**
  * Moves the player to the side they've pressed (\p keycode).
  * @param	keycode	Code of the pressed key.
  * @param	data	cub3D's data.
@@ -27,25 +58,21 @@
 static void	ft_handle_movement(int keycode, struct s_data *data)
 {
 	if (keycode == XKB_KEY_W || keycode == XKB_KEY_w)
-	{
-		data->player.x += round(data->player_angle.delta_x * MOV_EPS);
-		data->player.y -= round(data->player_angle.delta_y * MOV_EPS);
-	}
+		ft_handle_collision(data,
+			data->player.x + round(data->player_angle.delta_x * MOV_EPS),
+			data->player.y - round(data->player_angle.delta_y * MOV_EPS));
 	else if (keycode == XKB_KEY_A || keycode == XKB_KEY_a)
-	{
-		data->player.x -= round(data->player_angle.delta_y * MOV_EPS);
-		data->player.y -= round(data->player_angle.delta_x * MOV_EPS);
-	}
+		ft_handle_collision(data,
+			data->player.x - round(data->player_angle.delta_y * MOV_EPS),
+			data->player.y - round(data->player_angle.delta_x * MOV_EPS));
 	else if (keycode == XKB_KEY_S || keycode == XKB_KEY_s)
-	{
-		data->player.x -= round(data->player_angle.delta_x * MOV_EPS);
-		data->player.y += round(data->player_angle.delta_y * MOV_EPS);
-	}
+		ft_handle_collision(data,
+			data->player.x - round(data->player_angle.delta_x * MOV_EPS),
+			data->player.y + round(data->player_angle.delta_y * MOV_EPS));
 	else if (keycode == XKB_KEY_D || keycode == XKB_KEY_d)
-	{
-		data->player.x += round(data->player_angle.delta_y * MOV_EPS);
-		data->player.y += round(data->player_angle.delta_x * MOV_EPS);
-	}
+		ft_handle_collision(data,
+			data->player.x + round(data->player_angle.delta_y * MOV_EPS),
+			data->player.y + round(data->player_angle.delta_x * MOV_EPS));
 }
 
 /**
