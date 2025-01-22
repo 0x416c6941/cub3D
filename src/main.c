@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 18:18:32 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:18:44 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	ft_tmp_init_args(struct s_args *args)
 	i = 0;
 	while (i < TEXTURES_SIZE)
 	{
-		args->textures[i] = ft_strdup("textures/minecraft/diamond.xpm");
+		args->textures[i] = ft_strdup("textures/simonkraft/netherrack.xpm");
 		if (args->textures[i] == NULL)
 		{
 			j = 0;
