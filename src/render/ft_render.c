@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 00:12:54 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:46:52 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /**
  * Draws a ceiling and floor (defined in \p data) to \p img.
  * @param	data	cub3D's data.
- * @param	img		Image to draw them.
+ * @param	img		Image where to draw them.
  */
 static void	ft_draw_ceiling_and_floor(struct s_data *data,
 		struct s_img *img)
@@ -49,6 +49,17 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data,
 	}
 }
 
+/**
+ * Draws walls (use textures from \p data) to \p img.
+ * @param	data	cub3D's data.
+ * @param	img		Image to where draw them.
+ */
+static void	ft_draw_walls(struct s_data *data, struct s_img *img)
+{
+	(void)data;
+	(void)img;
+}
+
 int	ft_render(struct s_data *data)
 {
 	struct s_img	img;
@@ -65,6 +76,7 @@ int	ft_render(struct s_data *data)
 	img.img_pixels = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.size_line, &img.endianness);
 	ft_draw_ceiling_and_floor(data, &img);
+	ft_draw_walls(data, &img);
 	(void)mlx_put_image_to_window(data->conn, data->win, img.img,
 		BEGINNING, BEGINNING);
 	(void)mlx_destroy_image(data->conn, img.img);
