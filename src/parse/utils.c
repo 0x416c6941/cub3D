@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:29:26 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 17:05:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:08:14 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ bool	ft_path_is_dir(const char *path)
 {
 	int		fd;
 
-	res = false;
 	fd = open(path, O_DIRECTORY);
 	if (fd == -1)
 		return (false);
@@ -89,9 +88,9 @@ int	ft_check_file(const char *path, bool cub)
 	if (fd == -1)
 		return (ft_errmsg(path, strerror(errno), errno));
 	(void)close(fd);
-	if (cub && !ft_check_ext(path, "cub"))
+	if (cub && !ft_check_file_ext(path, "cub"))
 		return (ft_errmsg(path, "Not a .cub file", EINVAL));
-	else if (!cub && !ft_check_ext(path, "xpm"))
+	else if (!cub && !ft_check_file_ext(path, "xpm"))
 		return (ft_errmsg(path, "Not a .xpm file", EINVAL));
 	return (0);
 }
