@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 00:12:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 03:00:24 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RENDER_H
 
 # include <cub3D.h>
+# include <stdbool.h>
 
 /**
  * ----------------------------------------------------------------------------
@@ -24,6 +25,51 @@
  * To cast a horizontal ray upwards.
  */
 # define FOR_PRECISION	0.0001
+
+/**
+ * ----------------------------------------------------------------------------
+ * Structures.
+ * ----------------------------------------------------------------------------
+ */
+/**
+ * Information about the ray that was cast from us and hit the wall.
+ * Used to save the end result.
+ */
+typedef struct s_ray
+{
+	double	x;
+	double	y;
+	double	distance;	/* From player to the wall that was hit. */
+	/**
+	 * Has the ray actually hit the wall?
+	 * If not, then variables above may stay uninitialized.
+	 */
+	bool	hit;
+}	t_ray;
+
+/**
+ * To actually process (cast) the ray, we'll use this structure.
+ * Basically like a working structure for the ray caster.
+ * Used primarily to bypass Norminette.
+ */
+typedef struct s_ray_cast
+{
+	/**
+	 * Which ray we're casting now. H(i) = [0, FOV].
+	 */
+	int			i;
+	double		ray_angle;
+	double		ray_angle_tan;
+	double		ray_x;
+	double		ray_y;
+	double		ray_x_offset;
+	double		ray_y_offset;
+	/**
+	 * Ray's coordinates cast to map's, so that we could check
+	 * if we hit the wall already or not yet.
+	 */
+	t_coords	map;
+}	t_ray_cast;
 
 /**
  * ----------------------------------------------------------------------------

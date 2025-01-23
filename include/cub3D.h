@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/22 21:09:57 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 02:40:20 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@
  * To fix that, we'll amplify their return values.
  */
 # define TF_AMP	5
+
+/**
+ * Yes, field of view!
+ */
+# define FOV	90
 
 /**
  * For system crashes: malloc, write...
