@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 00:15:56 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:45:11 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static int	ft_tmp_init_args(struct s_args *args)
 		}
 		i++;
 	}
-	args->colors[COLOR_FLOOR] = (struct s_rgb){50, 50, 50};
-	args->colors[COLOR_CEILING] = (struct s_rgb){100, 100, 100};
+	args->colors[COLOR_FLOOR] = (struct s_rgb){50, 50, 50, true};
+	args->colors[COLOR_CEILING] = (struct s_rgb){100, 100, 100, true};
 	return (ft_tmp_init_args_norminette(args));
 }
 

@@ -6,12 +6,13 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 00:09:41 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:45:49 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <render.h>
 #include <cub3D.h>
+#include <stdbool.h>
 
 #define OCTET	8
 
@@ -35,7 +36,7 @@ void	ft_pixel_put_on_image(struct s_img *img, int x, int y,
 
 struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 {
-	const struct s_rgb	black = {0, 0, 0};
+	const struct s_rgb	black = {0, 0, 0, true};
 	struct s_rgb		ret;
 	int					offset;
 	unsigned char		*pixel;
@@ -48,5 +49,6 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 	ret.r = *(++pixel);
 	ret.g = *(++pixel);
 	ret.b = *(++pixel);
+	ret.set = true;
 	return (ret);
 }
