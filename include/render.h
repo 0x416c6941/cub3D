@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 03:04:21 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 03:41:29 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
  * ----------------------------------------------------------------------------
  */
 /**
- * Information about the ray that was cast from us and hit the wall.
+ * Information about the shortest ray that was cast from us and hit the wall.
  * Used to save the end result.
  */
 typedef struct s_ray
