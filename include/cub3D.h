@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 02:40:20 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:22:08 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_rgb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	bool			set;	/* Basically is used only in parser. */
 }	t_rgb;
 
 /**

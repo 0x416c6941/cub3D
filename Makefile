@@ -11,7 +11,7 @@ INC_DIR = include
 SRC_DIR = src
 SRC_FILES = main.c							\
 	    	utils.c							\
-		parse/ft_parse.c					\
+		parse/ft_parse.c parse/utils.c				\
 		init/init.c init/free_content.c init/utils.c		\
 		controls.c						\
 		render/ft_render.c render/utils.c
