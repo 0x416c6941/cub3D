@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 03:00:24 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 03:04:21 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
  * To cast a horizontal ray upwards.
  */
 # define FOR_PRECISION	0.0001
+
+/**
+ * 1 degree in radians. TODO: should this be in cub3D.h?
+ */
+# define DEGREE	0.0174533
 
 /**
  * ----------------------------------------------------------------------------
