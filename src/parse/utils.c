@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:29:26 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 15:38:44 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:05:35 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <libft.h>
+#include <utils.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 #include <unistd.h>
 
 bool	ft_check_textures_and_colors_set(t_args *args)
@@ -32,7 +35,7 @@ bool	ft_check_textures_and_colors_set(t_args *args)
 	i = 0;
 	while (i < COLORS_SIZE)
 	{
-		if (!args->colors[i].setted)
+		if (!args->colors[i].set)
 			return (false);
 		i++;
 	}
@@ -68,7 +71,6 @@ bool	ft_check_file_ext(const char *path, const char *ext)
 bool	ft_path_is_dir(const char *path)
 {
 	int		fd;
-	bool	res;
 
 	res = false;
 	fd = open(path, O_DIRECTORY);
@@ -87,9 +89,9 @@ int	ft_check_file(const char *path, bool cub)
 	if (fd == -1)
 		return (ft_errmsg(path, strerror(errno), errno));
 	(void)close(fd);
-	if (cub && !check_cub_ext(path))
+	if (cub && !ft_check_ext(path, "cub"))
 		return (ft_errmsg(path, "Not a .cub file", EINVAL));
-	else if (!cub && !check_xpm_ext(path))
+	else if (!cub && !ft_check_ext(path, "xpm"))
 		return (ft_errmsg(path, "Not a .xpm file", EINVAL));
 	return (0);
 }
