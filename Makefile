@@ -2,7 +2,7 @@
 CC = cc
 CFLAGS = -I$(INC_DIR)						\
 	 -Wall -Wextra -Wsign-conversion -pedantic -Werror	\
-	 -g
+	 -g -fsanitize=address
 
 # Headers.
 INC_DIR = include
