@@ -6,13 +6,14 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 15:45:49 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:11:10 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <render.h>
 #include <cub3D.h>
 #include <stdbool.h>
+#include <math.h>
 
 #define OCTET	8
 
@@ -51,4 +52,14 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 	ret.b = *(++pixel);
 	ret.set = true;
 	return (ret);
+}
+
+#undef OCTET
+
+/**
+ * Literally a copy paste from @3DSage.
+ */
+double	ft_dist(struct s_double_point a, struct s_double_point b, double angle)
+{
+	return (cos(angle) * (b.x - a.x) - sin(angle) * (b.y - a.y));
 }

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 16:54:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:11:02 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ typedef struct s_ray_cast
 }	t_ray_cast;
 
 /**
+ * Norminette Bypass for ft_dist()...
+ */
+typedef struct s_double_point
+{
+	double	x;
+	double	y;
+}	t_double_point;
+
+/**
  * ----------------------------------------------------------------------------
  * Functions.
  * ----------------------------------------------------------------------------
@@ -129,5 +138,15 @@ void			ft_pixel_put_on_image(struct s_img *img, int x, int y,
  * @return	Requested pixed, or black pixel if coordinates are out of bounds.
  */
 struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y);
+
+/**
+ * Calculates distance between points \p a and \p b.
+ * @param	a		Coordinates of a.
+ * @param	b		Coordinates of b.
+ * @param	angle	Angle petween boints a and b (does it make any sense?)
+ * @return	Distance between these two points.
+ */
+double			ft_dist(struct s_double_point a, struct s_double_point b,
+					double angle);
 
 #endif /* RENDER_H */
