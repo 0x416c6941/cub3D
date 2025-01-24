@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 15:44:43 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 00:47:58 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef struct s_map_info
  */
 /**
  * Parses file at \p file_path and saves parsed information to \p out.
+ * If any error is encountered, error log will be written to stderr.
  * @param	file_path	Path to a .cub file.
  * @param	out			Output.
- * @return	-1, if something went wrong. errno will also be set;
+ * @return	0 on success; error code otherwise.
  * 			Some non-negative value, if everything went fine.
  */
 int		ft_parse(const char *file_path, struct s_args *out);
@@ -53,7 +54,7 @@ int		ft_parse(const char *file_path, struct s_args *out);
  * @return	true, if all textures and colors are set;
  * 			false otherwise.
  */
-bool	ft_check_textures_and_colors_set(t_args *args);
+bool	ft_check_textures_and_colors_set(struct s_args *args);
 
 /**
  * Checks if a \p line contains only whitespaces.
