@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 02:40:54 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:34:06 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,6 @@ static int	ft_process_file(int fd, t_args *out)
 	bool	error;
 	char	*line;
 
-	/* Should this be 1 instead by default?...
-	 * Anyway, without this unconditional jump would occur.
-	 * We don't want that, do we? */
 	exit_code = 0;
 	error = false;
 	line = get_next_line(fd);
@@ -143,12 +140,6 @@ static int	ft_process_file(int fd, t_args *out)
 		free(line);
 		line = get_next_line(fd);
 	}
-	/**
-	 * Should this be in the final code?
-	 * I believe no.
-	if (errno != 0)
-		exit_code = ft_errmsg("Read error", strerror(errno), errno);
-	 */
 	return (exit_code);
 }
 
@@ -168,10 +159,6 @@ int	ft_parse(const char *file_path, struct s_args *out)
 	exit_code = ft_process_file(file, out);
 	if (exit_code == 0)
 		exit_code = ft_map_clean_validate(out);
-	/**
-	 * Should we leave this in the final code?
-	ft_print_t_args(out);
-	 */
 	if (close(file) == -1)
 		return (ft_errmsg(file_path, strerror(errno), errno));
 	return (exit_code);

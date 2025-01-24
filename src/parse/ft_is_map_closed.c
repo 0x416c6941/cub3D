@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:50:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:29:05 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:33:53 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,6 @@ static char	**ft_map_to_array(t_list *map, t_map_info *info)
 	if (map == NULL || info == NULL)
 		return (NULL);
 	info->rows = ft_lstsize(map);
-	/**
-	 * Does $map contain already expanded tabs?
-	 * Otherwise this may be a problem.
-	 */
 	info->cols = ft_strlen((char *)map->content);
 	array = (char **)malloc((size_t)(info->rows) * sizeof(char *));
 	if (array == NULL)
@@ -116,7 +112,8 @@ static int	ft_flood_fill(char **map, t_map_info info, int x, int y)
 	/**
 	 * TODO: please add documentation on this function :(
 	 */
-	if (x < 0 || x >= info.cols || y < 0 || y >= info.rows)
+	if (x < 0 || x >= info.cols || y < 0 || y >= info.rows
+		|| map[y][x] == ' ')
 		return (-1);
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return (0);

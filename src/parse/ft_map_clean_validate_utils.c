@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:33:09 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 02:18:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:28:48 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ int	ft_check_valid_characters(t_list *map)
 		while (line[i] != '\0')
 		{
 			if (line[i] != '1' && line[i] != '0' && line[i] != 'N'
-				&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+				&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+				&& line[i] != ' ')
 				return (ft_errmsg("Invalid map",
 						"Map contains invalid characters", EINVAL));
 			i++;
