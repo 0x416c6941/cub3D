@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:17:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:32:11 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ int		ft_is_map_closed(t_list *map);
  */
 int		ft_player_count(t_list *map);
 
+/**
+ * Iterates through the entire \p map and replaces all tabs with spaces.
+ * @param	map			Pointer to the head of the map linked list.
+ * @param	tab_width	Width of each tab stop (use DEFAULT_TAB_WIDTH for 8).
+ * @return	0 on success; error code otherwise.
+ */
+int		ft_process_tabs_in_map(t_list *map, int tab_width);
+
+/**
+ * -------- Utils. --------
+ */
 /**
  * Checks if all textures and colors in \p args are set.
  * @param	args	Arguments to check.
