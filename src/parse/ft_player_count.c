@@ -6,21 +6,13 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:34 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:14:49 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:17:46 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include <parse.h>
 
-/**
- * Return the number of player characters in the map.
- * Ensures that the map contains exactly one player character
- * (characters 'N', 'S', 'E' or 'W').
- * @warning	It's your responsibility to make sure \p map isn't NULL.
- * @param	map	Pointer to the head of the map linked list.
- * @return	Number of player characters.
- */
 int	ft_player_count(t_list *map)
 {
 	t_list	*current;

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:16:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:17:47 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,17 @@ int		ft_parse(const char *file_path, struct s_args *out);
  * @param	map	Pointer to the head of the map linked list.
  * @return	0 if the map is surrounded by walls; error code otherwise.
  */
-int		ft_is_map_closed(t_list *map)
+int		ft_is_map_closed(t_list *map);
+
+/**
+ * Return the number of player characters in the map.
+ * Ensures that the map contains exactly one player character
+ * (characters 'N', 'S', 'E' or 'W').
+ * @warning	It's your responsibility to make sure \p map isn't NULL.
+ * @param	map	Pointer to the head of the map linked list.
+ * @return	Number of player characters.
+ */
+int		ft_player_count(t_list *map);
 
 /**
  * Checks if all textures and colors in \p args are set.
