@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:46:26 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:41:27 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@
 /**
  * Yes, field of view!
  */
-# define FOV	90
+# define FOV	60
 
 /**
  * For system crashes: malloc, write...

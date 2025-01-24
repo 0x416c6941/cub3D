@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 16:55:20 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:44:21 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 		struct s_ray *ray, struct s_ray_cast *cast_data)
 {
-	(void)ray;
+	double	dist;
+
 	cast_data->casting_iteration = 0;
 	while (cast_data->casting_iteration < cast_data->max_casting_iterations)
 	{
@@ -45,8 +46,23 @@ static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 				&& cast_data->map.y < data->map_size.y)
 			&& ft_get_map_row(data->map,
 				cast_data->map.y)[cast_data->map.x] == '1')
-			// Hit the wall.
+		{
+			/**
+			 * Just replace this with such function,
+			 * like ft_try_to_set_the_ray().
+			 */
+			dist = ft_dist((t_double_point){data->player.x, data->player.y},
+					(t_double_point){cast_data->ray_x, cast_data->ray_y},
+					cast_data->ray_angle);
+			if (!ray->hit || ray->distance < dist)
+			{
+				ray->x = cast_data->ray_x;
+				ray->y = cast_data->ray_y;
+				ray->distance = dist;
+				ray->hit = true;
+			}
 			return ;
+		}
 		cast_data->ray_x += cast_data->ray_x_offset;
 		cast_data->ray_y += cast_data->ray_y_offset;
 		cast_data->casting_iteration++;
