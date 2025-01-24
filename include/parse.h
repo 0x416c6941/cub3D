@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:53:17 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:18:19 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <cub3D.h>
 # include <stdbool.h>
+
+/**
+ * ----------------------------------------------------------------------------
+ * Constants.
+ * ----------------------------------------------------------------------------
+ */
+# define DEFAULT_TAB_WIDTH	8
 
 /**
  * ----------------------------------------------------------------------------
@@ -83,6 +90,69 @@ int		ft_save_colors(char *line, t_args *args, int index);
  * @return	0 on success; error code otherwise.
  */
 int		ft_save_textures(char *line, struct s_args *args, int index);
+
+/**
+ * In map stored in \p args:
+ * Removes all empty lines;
+ * replace tabs with spaces;
+ * replace spaces with '0';
+ * check if map is closed;
+ * check if there is only one player position;
+ * check if there are only valid characters.
+ * This function is massive, however it makes sense in our case.
+ * @brief	Does all required checks and map modifications.
+ * @param	args	Pointer to arguments, containing the map
+ * 					to validate and modify (clean / extend).
+ * @return	0 on success; error code otherwise.
+ */
+int		ft_map_clean_validate(struct s_args *args);
+
+/**
+ * -------- ft_map_clean_validate utils. --------
+ */
+/**
+ * This function iterates through the \p map and removes any
+ * line that is either empty or contains only spaces or tabs.
+ * @brief	Removes all empty lines from the \p map.
+ * @param	map	Double pointer to the head of the map linked list.
+ * @return	0 on success; error code otherwise.
+ */
+int		ft_remove_all_empty_lines(t_list **map);
+
+/**
+ * If the last character in the string is '\n', it is replaced with the
+ * null terminator ('\0'), effectively removing it.
+ * @brief	Removes the trailing newline character ('\n') from a \p line.
+ * @param	line	The input string to process.
+ * @return	0 on success; error code otherwise, e.g. if input is invalid.
+ */
+int		ft_remove_newline(char *line);
+
+/**
+ * Find the maximum line length in the \p map.
+ * @param	map	Pointer to the head of the map linked list.
+ * @return	Maximum line length;
+ * 			-1 if the map is NULL or empty.
+ */
+int		ft_find_max_length(t_list *map);
+
+/**
+ * Pads a \p line to the required length by appending the \p pad_char
+ * until it reaches the specified \p max_length.
+ * @param	line		The original line to pad.
+ * @param	max_length	The required length of the line after padding.
+ * @param	pad_char	The character used for padding (e.g., ' ' or '0').
+ * @return	The padded line; NULL on failure.
+ */
+char	*ft_pad_line_to_length(const char *line, int max_length, char pad_char);
+
+/**
+ * Checks that all characters in the map are either '1', '0'
+ * or one of the player characters ('N', 'S', 'E' or 'W').
+ * @param	map	Pointer to the head of the map linked list.
+ * @return	0 if valid; error code otherwise.
+ */
+int		ft_check_valid_characters(t_list *map);
 
 /**
  * -------- Utils. --------

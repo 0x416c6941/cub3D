@@ -6,11 +6,12 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:23:45 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:52:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:16:09 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <parse.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -39,7 +40,7 @@ int	ft_save_textures(char *line, struct s_args *args, int index)
 	file_path = ft_strtrim(line + 2, " \t\n");
 	if (!file_path)
 		return (ft_errmsg("Memory allocation error", "ft_strtrim", ENOMEM));
-	exit_status = check_file(file_path, false);
+	exit_status = ft_check_file(file_path, false);
 	if (exit_status == 0)
 		args->textures[index] = file_path;
 	else
