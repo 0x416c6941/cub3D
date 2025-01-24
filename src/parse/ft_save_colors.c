@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_save_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:24:33 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:49:53 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:41:38 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <utils.h>
 
 #define RGB_VAL_SIZE	3
+#define RGB_R			0
+#define RGB_G			1
+#define RGB_B			2
 
 /**
  * Validates that the \p str represents a positive integer with no more than
@@ -76,16 +79,21 @@ static bool	ft_validate_color(const char **rgb_values)
 	return (i == RGB_VAL_SIZE);
 }
 
-#define RGB_R			0
-#define RGB_G			1
-#define RGB_B			2
-
+/**
+ * @brief Parses and saves RGB color values to the args structure.
+ *
+ * This function processes a line containing an RGB color in the format
+ * "R,G,B". It validates the format, ensures the values are in the range
+ * [0, 255], and stores them in the `t_args` structure at the specified index.
+ * 
+ * @param line The input string containing the color definition.
+ * @param args A pointer to the `t_args` structure where the color will be saved.
+ * @param index The index in the `args->colors` array to save the color.
+ * @return int Returns 0 on success, or an error code if the input is invalid
+ * or a memory allocation failure occurs.
+ */
 int	ft_save_colors(char *line, t_args *args, int index)
 {
-	/**
-	 * TODO: Please add docs on this function :(
-	 * Please kindly add them to parse.h file directly.
-	 */
 	char	*trimmed;
 	char	**rgb_values;
 	int		rgb_val[RGB_VAL_SIZE];

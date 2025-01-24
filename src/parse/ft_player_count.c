@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_count.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:34 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 02:15:58 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:43:36 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include <parse.h>
+
+/**
+ * @brief Counts the number of player starting positions in a map.
+ *
+ * This function iterates through a linked list (`t_list`) of strings 
+ * representing the map. It counts the occurrences of characters 'N', 'S', 'E', 
+ * and 'W', which denote valid player starting positions.
+ * 
+ * @param map A pointer to the head of the linked list of strings representing
+ * the map.
+ * @return int Returns the total count of player starting positions in the map.
+ */
 
 int	ft_player_count(t_list *map)
 {

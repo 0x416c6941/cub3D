@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_clean_validate_utils.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:33:09 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 17:28:48 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:43:19 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 #include <libft.h>
 #include <stdlib.h>
 #include <utils.h>
+
+/**
+ * @brief Removes all empty or whitespace-only lines from a linked list.
+ *
+ * This function iterates through a linked list of strings (`t_list`) and removes
+ * any nodes containing an empty string or a string consisting only of 
+ * whitespace.
+ * 
+ * @param map A double pointer to the head of the linked list.
+ * @return int Returns 0 on success, or an error code if the input is invalid.
+ */
 
 int	ft_remove_all_empty_lines(t_list **map)
 {
@@ -45,6 +56,17 @@ int	ft_remove_all_empty_lines(t_list **map)
 	return (0);
 }
 
+/**
+ * @brief Removes a trailing newline character from a string, if present.
+ *
+ * This function checks if the given string ends with a newline character ('\n')
+ * and removes it by replacing it with a null terminator ('\0'). If the string
+ * is NULL, an error is returned.
+ * 
+ * @param line A pointer to the string to process.
+ * @return int Returns 0 on success, or an error code if the input is invalid.
+ */
+
 int	ft_remove_newline(char *line)
 {
 	int	length;
@@ -56,6 +78,18 @@ int	ft_remove_newline(char *line)
 		line[length - 1] = '\0';
 	return (0);
 }
+
+/**
+ * @brief Finds the maximum line length in a linked list of strings.
+ *
+ * This function iterates through a linked list (`t_list`) of strings, computes
+ * the length of each string, and returns the length of the longest string. If
+ * the input list is NULL, an error is returned.
+ * 
+ * @param map A pointer to the head of the linked list of strings.
+ * @return int Returns the maximum line length, or an error code if the input
+ * is invalid.
+ */
 
 int	ft_find_max_length(t_list *map)
 {
@@ -74,6 +108,19 @@ int	ft_find_max_length(t_list *map)
 	}
 	return (max_length);
 }
+
+/**
+ * @brief Pads a string to a specified length with a given character.
+ *
+ * This function creates a new string by copying the input string and padding
+ * it with the specified character until it reaches the desired length. If the
+ * input string already matches the desired length, a duplicate is returned.
+ * 
+ * @param line The input string to pad.
+ * @param max_length The target length of the padded string.
+ * @param pad_char The character used for padding.
+ * @return char* A newly allocated padded string, or NULL on error.
+ */
 
 char	*ft_pad_line_to_length(const char *line, int max_length, char pad_char)
 {
@@ -95,6 +142,20 @@ char	*ft_pad_line_to_length(const char *line, int max_length, char pad_char)
 	new_line[max_length] = '\0';
 	return (new_line);
 }
+
+/**
+ * @brief Validates that all characters in a map are valid.
+ *
+ * This function iterates through a linked list (`t_list`) of strings 
+ * representing the map. It ensures that each character in the map is one of 
+ * the allowed characters: '1', '0', 'N', 'S', 'E', 'W', or ' ' (space). If an 
+ * invalidcharacter is found, an error is returned.
+ * 
+ * @param map A pointer to the head of the linked list of strings representing
+ * the map.
+ * @return int Returns 0 if all characters are valid, or an error code if an
+ * invalid character is encountered.
+ */
 
 int	ft_check_valid_characters(t_list *map)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_tabs_in_map.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:38:05 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:31:48 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:44:00 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,20 @@ static char	*ft_replace_tabs(const char *line, int tab_width)
 	ft_expand_tabs(line, result, tab_width);
 	return (result);
 }
+
+/**
+ * @brief Replaces tabs in the map with spaces of a specified width.
+ *
+ * This function iterates through a linked list (`t_list`) of strings 
+ * representing the map. It replaces all tabs ('\t') in each line with spaces 
+ * based on the specified tab width. The original lines are freed and replaced 
+ * with the new modified lines.
+ * 
+ * @param map A pointer to the head of the linked list of strings representing
+ * the map.
+ * @param tab_width The number of spaces to replace each tab with (must be > 1).
+ * @return int Returns 0 on success, or an error code if an error occurs.
+ */
 
 int	ft_process_tabs_in_map(t_list *map, int tab_width)
 {

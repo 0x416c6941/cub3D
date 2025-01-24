@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 02:18:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:47:52 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,15 @@ int		ft_player_count(t_list *map);
  */
 int		ft_process_tabs_in_map(t_list *map, int tab_width);
 
+/**
+ * @brief Parses and saves RGB color values to the args structure.
+ * 
+ * @param line The input string containing the color definition.
+ * @param args A pointer to the `t_args` structure where the color will be saved.
+ * @param index The index in the `args->colors` array to save the color.
+ * @return int Returns 0 on success, or an error code if the input is invalid
+ * or a memory allocation failure occurs.
+ */
 int		ft_save_colors(char *line, t_args *args, int index);
 
 /**

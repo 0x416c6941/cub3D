@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_map_closed.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:50:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 17:33:53 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:30:49 by hlyshchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,23 @@ static char	**ft_map_to_array(t_list *map, t_map_info *info)
 	return (array);
 }
 
+/**
+ * @brief Recursively performs a flood-fill algorithm to validate or mark a map.
+ *
+ * This function traverses and validates a 2D map represented as a character
+ * grid. It recursively fills the map from a starting point `(x, y)`, marking
+ * visited cells with 'X'. The function also checks for boundary conditions or
+ * invalid cells (e.g., spaces ' ') and returns `-1` if an error is encountered.
+ *
+ * @param map A 2D character array representing the map.
+ * @param info A struct containing map metadata (e.g., rows and columns).
+ * @param x The current x-coordinate in the map.
+ * @param y The current y-coordinate in the map.
+ * @return int Returns 0 if successful, or -1 if an invalid cell is encountered.
+ */
+
 static int	ft_flood_fill(char **map, t_map_info info, int x, int y)
 {
-	/**
-	 * TODO: please add documentation on this function :(
-	 */
 	if (x < 0 || x >= info.cols || y < 0 || y >= info.rows
 		|| map[y][x] == ' ')
 		return (-1);
