@@ -3,116 +3,169 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 14:03:42 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 00:59:30 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parse.h>
 #include <cub3D.h>
+#include <parse.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <libft.h>
+#include <parse.h>
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
+#include <string.h>
 #include <unistd.h>
+#include <utils.h>
 
-static int	ft_save_textures(char *line, struct s_args *out, int identifier)
+/**
+ * Processes a single \p line of the map and adds it to \p out->map.
+ * Validates the line to ensure it adheres to the map structure rules:
+ * - No empty lines are allowed in the middle of the map.
+ * - Appends non-empty lines to the map linked list.
+ * @param	line	Non-NULL line to process.
+ * @param	out		Non-NULL pointer to structure to store the map.
+ * @return	0 on success; error code otherwise.
+ */
+static int	ft_process_map_line(char *line, struct s_args *out)
 {
-	if (!line || !out || identifier < 0 || identifier >= TEXTURES_SIZE)
-		return (-1);
-	if (out->textures[identifier])
-	{
-		errno = DUP_PAR;
-		return (-1);
-	}
-	out->textures[identifier] = ft_strdup(line);
-	if (!out->textures[identifier])
-		return (-1);
-	out->map_info_added++;
+	t_list	*node;
+
+	if (*line == '\0' || ((ft_string_isspace(line) && out->map == NULL)))
+		return (0);
+	node = ft_lstnew(ft_strdup(line));
+	if (node == NULL)
+		return (ft_errmsg("Memory allocation error", "ft_strdup", ENOMEM));
+	if (out->map == NULL)
+		out->map = node;
+	else
+		ft_lstadd_back(&out->map, node);
 	return (0);
 }
 
-static int	ft_save_colors(char *line, struct s_args *out, int identifier)
-{
-	if (!line || !out)
-		return (-1);
-	// To temporarily bypass compilation error:
-	(void)identifier;
-	// out->colors[identifier] = line;
-	out->map_info_added++;
-	return (0);
-}
-
-static int	ft_line_manager(char *line, struct s_args *out)
+/**
+ * Parses the \p line to identify a texture or color parameter.
+ * If the line is empty or whitespace only, it is ignored.
+ * Trims spaces and validates the parameter before saving it to \p out.
+ * Supported parameters:
+ * - NO, SO, WE, EA: Texture paths.
+ * - F, C: Floor and ceiling colors in RGB (e.g., F 220,100,0).
+ * Errors:
+ * - EINVAL: Invalid parameter or format.
+ * - ENOMEM: Memory allocation failure.
+ * @brief	Processes a parameter line and saves the data to \p out.
+ * @param	line	Non-NULL string containing the line to process.
+ * @param	out		Non-NULL pointer to the structure to store parsed data.
+ * @return	0 on success, or a negative error code.
+ */
+static int	ft_process_params_line(char *line, struct s_args *out)
 {
 	char	*trimmed;
+	int		result;
 
-	if (!line)
-		return (-1);
-	else if (*line == '\0')
+	if (*line == '\0' || ft_string_isspace(line))
 		return (0);
-	if (out->map_info_added < 6)
-	{
-		trimmed = ft_strtrim(line, " \t\n");
-		if (!trimmed)
-			return (-1);
-	}
+	trimmed = ft_strtrim(line, " \t\n");
+	if (trimmed == NULL)
+		return (ft_errmsg("Memory allocation error", "ft_strtrim", ENOMEM));
+	if (ft_strncmp(trimmed, "NO ", sizeof("NO ") - 1) == 0)
+		result = ft_save_textures(trimmed, out, TEXTURE_NO);
+	else if (ft_strncmp(trimmed, "SO ", sizeof("SO ") - 1) == 0)
+		result = ft_save_textures(trimmed, out, TEXTURE_SO);
+	else if (ft_strncmp(trimmed, "WE ", sizeof("WE ") - 1) == 0)
+		result = ft_save_textures(trimmed, out, TEXTURE_WE);
+	else if (ft_strncmp(trimmed, "EA ", sizeof("EA ") - 1) == 0)
+		result = ft_save_textures(trimmed, out, TEXTURE_EA);
+	else if (ft_strncmp(trimmed, "F ", sizeof("F ") - 1) == 0)
+		result = ft_save_colors(trimmed, out, COLOR_FLOOR);
+	else if (ft_strncmp(trimmed, "C ", sizeof("C ") - 1) == 0)
+		result = ft_save_colors(trimmed, out, COLOR_CEILING);
 	else
-		ft_lstadd_back(&out->map, ft_lstnew(line));
-	if (ft_strncmp(trimmed, "NO", 2) == 0)
-		return (ft_save_textures(trimmed, out, TEXTURE_NO));
-	else if (ft_strncmp(trimmed, "SO", 2) == 0)
-		return (ft_save_textures(trimmed, out, TEXTURE_SO));
-	else if (ft_strncmp(trimmed, "WE", 2) == 0)
-		return (ft_save_textures(trimmed, out, TEXTURE_WE));
-	else if (ft_strncmp(trimmed, "EA", 2) == 0)
-		return (ft_save_textures(trimmed, out, TEXTURE_EA));
-	else if (ft_strncmp(trimmed, "F", 1) == 0)
-		return (ft_save_colors(trimmed, out, COLOR_FLOOR));
-	else if (ft_strncmp(trimmed, "C", 1) == 0)
-		return (ft_save_colors(trimmed, out, COLOR_CEILING));
-	errno = INV_PAR;
-	return (-1);
+		result = ft_errmsg("Invalid parameter or map started with missing info",
+				trimmed, EINVAL);
+	free(trimmed);
+	return (result);
 }
 
-static int	ft_read_file_to_struct(int fd, struct s_args *out)
+/**
+ * Processes a single \p line from the input file.
+ * This function determines whether the line belongs to the "parameters" phase
+ * or the "map" phase, based on whether all textures and colors are set.
+ * It then delegates the processing to the appropriate function.
+ * @param	line	The line to process.
+ * @param	out		Pointer to the structure where parsed data is stored.
+ * @return	0 on success; error code otherwise.
+ */
+static int	ft_process_line(char *line, struct s_args *out)
 {
+	if (line == NULL || out == NULL)
+		return (ft_errmsg("Invalid arguments", "Null ptr provided", EINVAL));
+	if (ft_check_textures_and_colors_set(out))
+		return (ft_process_map_line(line, out));
+	else
+		return (ft_process_params_line(line, out));
+}
+
+/**
+ * Reads all the file with file descriptor \p fd line by line
+ * and passes it to function that will process the lines and parse them.
+ * In case error occurs reads until the end of file,
+ * and error message would be written to stderr.
+ * @param	fd	File descriptor of the file to read.
+ * @param	out	Where to save 
+ * @return	0 on success; error code otherwise.
+ */
+static int	ft_process_file(int fd, t_args *out)
+{
+	int		exit_code;
+	bool	error;
 	char	*line;
 
+	/* Should this be 1 instead by default?...
+	 * Anyway, without this unconditional jump would occur.
+	 * We don't want that, do we? */
+	exit_code = 0;
+	error = false;
 	line = get_next_line(fd);
-	while (*line)
+	while (line != NULL)
 	{
-		if (ft_line_manager(line, out) == -1)
+		if (!error)
 		{
-			free(line);
-			return (-1);
+			exit_code = ft_process_line(line, out);
+			if (exit_code != 0)
+				error = true;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
-	// Temporarily to bypass compilation error (no return value before):
-	return (0);
+	if (errno != 0)
+		exit_code = ft_errmsg("Read error", strerror(errno), errno);
+	return (exit_code);
 }
 
 int	ft_parse(const char *file_path, struct s_args *out)
 {
 	int	file;
-	int	errnobuf;
+	int	exit_code;
 
+	if (file_path == NULL || out == NULL)
+		return (ft_errmsg("Invalid arguments", "Null ptr provided", EINVAL));
+	exit_code = ft_check_file(file_path, true);
+	if (exit_code != 0)
+		return (exit_code);
 	file = open(file_path, O_RDONLY);
 	if (file == -1)
-		return (-1);
-	else if (ft_read_file_to_struct(file, out) == -1)
-	{
-		errnobuf = errno;
-		if (close(file) == -1)
-			return (-1);
-		return (errno = errnobuf, -1);
-	}
-	close(file);
-	return (0);
+		return (ft_errmsg(file_path, strerror(errno), errno));
+	exit_code = ft_process_file(file, out);
+	if (exit_code == 0)
+		exit_code = ft_map_clean_validate(out);
+	ft_print_t_args(out);
+	if (close(file) == -1)
+		return (ft_errmsg(file_path, strerror(errno), errno));
+	return (exit_code);
 }
