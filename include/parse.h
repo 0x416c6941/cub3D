@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:32:11 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:41:13 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int		ft_player_count(t_list *map);
  * @return	0 on success; error code otherwise.
  */
 int		ft_process_tabs_in_map(t_list *map, int tab_width);
+
+int		ft_save_colors(char *line, t_args *args, int index);
 
 /**
  * -------- Utils. --------
