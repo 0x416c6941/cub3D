@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:29:26 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 02:22:56 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:28:01 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	ft_string_isspace(const char *line)
 		return (true);
 	while (*line != '\0')
 	{
-		if (!ft_isspace(*((int *)line)))
+		if (!ft_isspace(*line))
 			return (false);
 		line++;
 	}
