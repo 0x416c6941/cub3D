@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:50:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:12:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:16:43 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ static int	ft_flood_fill(char **map, t_map_info info, int x, int y)
  * This function uses flood fill to ensure the map is fully enclosed by walls.
  * It starts from the player's position ('N', 'S', 'E', 'W') and checks
  * for any escape routes (reaching the edges of the map).
- * @brief Validates if the \p map is surrounded by walls using flood fill.
+ * @brief	Validates if the \p map is surrounded by walls using flood fill.
  * @param	map	Pointer to the head of the map linked list.
  * @return	0 if the map is surrounded by walls; error code otherwise.
  */

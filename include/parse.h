@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 00:47:58 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:16:47 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ typedef struct s_map_info
  * 			Some non-negative value, if everything went fine.
  */
 int		ft_parse(const char *file_path, struct s_args *out);
+
+/**
+ * Checks if \p map around the player is closed or not.
+ * @param	map	Pointer to the head of the map linked list.
+ * @return	0 if the map is surrounded by walls; error code otherwise.
+ */
+int		ft_is_map_closed(t_list *map)
 
 /**
  * Checks if all textures and colors in \p args are set.
