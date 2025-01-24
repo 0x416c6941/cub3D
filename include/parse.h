@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:00:08 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:41:13 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:53:17 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ int		ft_player_count(t_list *map);
 int		ft_process_tabs_in_map(t_list *map, int tab_width);
 
 int		ft_save_colors(char *line, t_args *args, int index);
+
+/**
+ * Saves a texture file path to \p args.
+ * @param	line	The line containing the texture identifier and file path.
+ * @param	args	Pointer to the structure where textures' paths are stored.
+ * @param	index	The index in the "textures" array to store the texture path.
+ * @return	0 on success; error code otherwise.
+ */
+int		ft_save_textures(char *line, struct s_args *args, int index);
 
 /**
  * -------- Utils. --------

@@ -6,11 +6,12 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:24:33 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:40:21 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:49:53 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <parse.h>
 #include <errno.h>
 #include <libft.h>
 #include <stdlib.h>

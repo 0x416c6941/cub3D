@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 15:44:26 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 01:46:26 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_rgb
  */
 typedef struct s_args
 {
-	int			map_info_added;
 	char		*textures[TEXTURES_SIZE];
 	t_rgb		colors[COLORS_SIZE];
 	t_list		*map;

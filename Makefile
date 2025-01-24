@@ -11,7 +11,11 @@ INC_DIR = include
 SRC_DIR = src
 SRC_FILES = main.c							\
 	    	utils.c							\
-		parse/ft_parse.c parse/utils.c				\
+		parse/ft_parse.c parse/ft_is_map_closed.c		\
+		parse/ft_player_count.c					\
+		parse/ft_process_tabs_in_map.c parse/ft_save_colors.c	\
+		parse/ft_save_textures.c				\
+		parse/utils.c						\
 		init/init.c init/free_content.c init/utils.c		\
 		controls.c						\
 		render/ft_render.c render/utils.c
