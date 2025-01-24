@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:29:26 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 01:29:14 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:22:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ bool	ft_check_file_ext(const char *path, const char *ext)
 
 	path_len = ft_strlen(path);
 	ext_len = ft_strlen(ext);
-	if (path_len <= ext_len || path[(path_len - 1) - ext_len - 1] != '.'
-		|| ft_strcmp(path + (path_len - 1) - ext_len, ext) != 0)
+	if (path_len <= ext_len || path[path_len - ext_len - 1] != '.'
+		|| ft_strcmp((path + path_len) - ext_len, ext) != 0)
 		return (false);
 	return (true);
 }
