@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:20:52 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 02:06:10 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:52:23 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,21 +155,24 @@ int	ft_map_clean_validate(struct s_args *args)
 {
 	if (args == NULL)
 		return (ft_errmsg("Invalid arguments", "Null ptr provided", EINVAL));
-	if (args->map == NULL)
+	else if (args->map == NULL)
 		return (ft_errmsg("Invalid map", "Map is empty", EINVAL));
-	if (ft_check_empty_lines_in_map(args->map) != 0)
+	else if (ft_check_empty_lines_in_map(args->map) != 0)
 		return (EINVAL);
-	if (ft_remove_all_empty_lines(&(args->map)) != 0)
+	else if (ft_remove_all_empty_lines(&(args->map)) != 0)
 		return (EINVAL);
-	if (ft_process_tabs_in_map(args->map, DEFAULT_TAB_WIDTH) != 0)
+	else if (ft_process_tabs_in_map(args->map, DEFAULT_TAB_WIDTH) != 0)
 		return (EINVAL);
-	if (ft_remove_newlines_from_map(args->map) != 0)
+	else if (ft_remove_newlines_from_map(args->map) != 0)
 		return (EINVAL);
-	if (ft_validate_map_characters_and_player(args->map) != 0)
+	/**
+	 * TODO: Replace spaces with '0' before calling this function!
+	 */
+	else if (ft_validate_map_characters_and_player(args->map) != 0)
 		return (EINVAL);
-	if (ft_uniform_map(args->map, '0') != 0)
+	else if (ft_uniform_map(args->map, '0') != 0)
 		return (EINVAL);
-	if (ft_is_map_closed(args->map) != 0)
+	else if (ft_is_map_closed(args->map) != 0)
 		return (EINVAL);
 	return (0);
 }
