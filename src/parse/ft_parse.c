@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:10:25 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 01:44:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 02:40:54 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,12 @@ static int	ft_process_file(int fd, t_args *out)
 		free(line);
 		line = get_next_line(fd);
 	}
+	/**
+	 * Should this be in the final code?
+	 * I believe no.
 	if (errno != 0)
 		exit_code = ft_errmsg("Read error", strerror(errno), errno);
+	 */
 	return (exit_code);
 }
 
