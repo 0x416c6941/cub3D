@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 17:11:02 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:09:06 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_ray
 	double	x;
 	double	y;
 	double	distance;	/* From player to the wall that was hit. */
+	double	angle;
 	/**
 	 * Has the ray actually hit the wall?
 	 * If not, then variables above may stay uninitialized.

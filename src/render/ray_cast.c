@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 18:44:21 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:09:31 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 				ray->x = cast_data->ray_x;
 				ray->y = cast_data->ray_y;
 				ray->distance = dist;
+				ray->angle = cast_data->ray_angle;
 				ray->hit = true;
 			}
 			return ;

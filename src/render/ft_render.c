@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 16:55:29 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:19:53 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <utils.h>
 
 #define BEGINNING	0
@@ -50,6 +51,31 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data,
 }
 
 /**
+ * Thanks a lot to @3DSage.
+ * TODO: Doc
+ */
+static void	ft_draw_line(struct s_data *data, struct s_img *img,
+		struct s_ray ray, int x_offset)
+{
+	const double		fix_fisheye = data->player_angle.angle - ray.angle;
+	double				line_height;
+	double				line_offset;
+	int					i;
+	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
+
+	ray.distance = ray.distance * cos(fix_fisheye);
+	line_height = (((int)ft_strlen(data->map->content) * (int)ft_lstsize(data->map))
+			* BLOCK_Y) / ray.distance;
+	if (line_height > BLOCK_Y)
+		line_height = BLOCK_Y;
+	line_offset = BLOCK_Y / 2 - line_height / 2;
+	i = 0;
+	/* Should we cast line_height to int? */
+	while (i < line_height)
+		ft_pixel_put_on_image(img, x_offset, line_offset + i++, &red);
+}
+
+/**
  * Draws walls (use textures from \p data) to \p img.
  * @param	data	cub3D's data.
  * @param	img		Image to where draw them.
@@ -58,11 +84,17 @@ static void	ft_draw_walls(struct s_data *data, struct s_img *img)
 {
 	struct s_ray	rays[FOV];
 	const double	gap_between_rays = DEGREE;
+	int				i;
 
 	(void)ft_memset(rays, 0, sizeof(struct s_ray) * FOV);
 	ft_horizontal_ray_cast(data, rays, FOV, gap_between_rays);
 	ft_vertical_ray_cast(data, rays, FOV, gap_between_rays);
-	(void)img;
+	i = 0;
+	while (i < FOV)
+	{
+		ft_draw_line(data, img, rays[i], i);
+		i++;
+	}
 }
 
 int	ft_render(struct s_data *data)
