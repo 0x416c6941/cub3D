@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/23 03:02:41 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:55:29 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data,
 static void	ft_draw_walls(struct s_data *data, struct s_img *img)
 {
 	struct s_ray	rays[FOV];
+	const double	gap_between_rays = DEGREE;
 
 	(void)ft_memset(rays, 0, sizeof(struct s_ray) * FOV);
-	(void)data;
+	ft_horizontal_ray_cast(data, rays, FOV, gap_between_rays);
+	ft_vertical_ray_cast(data, rays, FOV, gap_between_rays);
 	(void)img;
 }
 
@@ -80,6 +82,7 @@ int	ft_render(struct s_data *data)
 			&img.bits_per_pixel, &img.size_line, &img.endianness);
 	ft_draw_ceiling_and_floor(data, &img);
 	ft_draw_walls(data, &img);
+	printf("Putting image to window...\n");
 	(void)mlx_put_image_to_window(data->conn, data->win, img.img,
 		BEGINNING, BEGINNING);
 	(void)mlx_destroy_image(data->conn, img.img);
