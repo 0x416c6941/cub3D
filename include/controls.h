@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:27:24 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 16:41:28 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:17:01 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
  * In case of movement, value of MOV_EPS will be amplified by the angle
  * player is looking at.
  */
-# define MOV_EPS	4	/* cub3D.h -> BLOCK_X / 32. */
-# define ANGLE_EPS	0.1
+# define MOV_EPS	8	/* cub3D.h -> BLOCK_X / 16. */
+# define ANGLE_EPS	0.2
 
 /**
  * ----------------------------------------------------------------------------
