@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 01:15:04 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:37:47 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
 
 	ray.distance = ray.distance * cos(fix_fisheye);
-	line_height = (((int)ft_strlen(data->map->content) * (int)ft_lstsize(data->map))
-			* BLOCK_Y) / ray.distance;
+	line_height = (((int)ft_strlen(data->map->content)
+				* (int)ft_lstsize(data->map)) * BLOCK_Y) / ray.distance;
 	if (line_height > WIN_Y)
 		line_height = WIN_Y;
 	line_offset = WIN_Y / 2 - line_height / 2;

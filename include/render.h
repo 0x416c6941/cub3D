@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 19:09:06 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:38:45 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,17 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y);
  */
 double			ft_dist(struct s_double_point a, struct s_double_point b,
 					double angle);
+
+/**
+ * Norminette bypass. Try to set the \p ray,
+ * if it wasn't set already or if we found a shorter one.
+ * @param	ray				Ray to try to set.
+ * @param	player_coords	Current players coords.
+ * @param	ray_coords		Rays coords.
+ * @param	ray_angle		Rays angle.
+ */
+void			ft_try_to_set_the_ray(struct s_ray *ray,
+					struct s_double_point player_coords,
+					struct s_double_point ray_coords, double ray_angle);
 
 #endif /* RENDER_H */
