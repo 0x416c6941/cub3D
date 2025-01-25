@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 23:04:56 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:51:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,37 @@
 #include <render.h>
 
 /**
+ * Continuation of ft_handle_collision() to bypass Norminette.
+ * Handles \p new_y.
+ * @param	data	cub3D's data.
+ * @param	new_x	Player's new x coordinate.
+ * @param	new_y	Player's new y coordinate.
+ */
+static void	ft_handle_collision_norminette(struct s_data *data,
+		int new_x, int new_y)
+{
+	const int	y_offset = BLOCK_Y / 16;
+
+	if (new_y < data->player.y
+		&& (ft_get_map_row(data->map,
+				new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1'
+		|| (new_y % BLOCK_Y < y_offset
+			&& ft_get_map_row(data->map, new_y / BLOCK_Y - 1)[data->player.x
+			/ BLOCK_X] == '1')))
+		new_y = data->player.y / BLOCK_Y * BLOCK_Y + y_offset;
+	else if (new_y > data->player.y
+		&& (ft_get_map_row(data->map,
+				new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1'
+		|| ((BLOCK_Y - (new_y % BLOCK_Y - 1)) < y_offset
+			&& ft_get_map_row(data->map, new_y / BLOCK_Y + 1)[data->player.x
+			/ BLOCK_X] == '1')))
+		new_y = data->player.y / BLOCK_Y * BLOCK_Y
+			+ (BLOCK_Y - 1 - y_offset);
+	data->player.x = new_x;
+	data->player.y = new_y;
+}
+
+/**
  * Moves the player to new \p new_x and \p new_y, while handling collision.
  * @warning	It's up to you to make sure that \p new_x / BLOCK_X
  * 			and \p new_y / BLOCK_Y aren't out of bounds of the map.
@@ -30,24 +61,24 @@
 static void	ft_handle_collision(struct s_data *data,
 		int new_x, int new_y)
 {
+	const int	x_offset = BLOCK_X / 16;
+
 	if (new_x < data->player.x
-		&& ft_get_map_row(data->map,
-			data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1')
-		new_x = data->player.x / BLOCK_X * BLOCK_X;
+		&& (ft_get_map_row(data->map,
+				data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1'
+		|| (new_x % BLOCK_X < x_offset
+			&& ft_get_map_row(data->map, data->player.y / BLOCK_Y)[new_x
+			/ BLOCK_X - 1] == '1')))
+		new_x = data->player.x / BLOCK_X * BLOCK_X + x_offset;
 	else if (new_x > data->player.x
-		&& ft_get_map_row(data->map,
-			data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1')
-		new_x = data->player.x / BLOCK_X * BLOCK_X + (BLOCK_X - 1);
-	if (new_y < data->player.y
-		&& ft_get_map_row(data->map,
-			new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1')
-		new_y = data->player.y / BLOCK_Y * BLOCK_Y;
-	else if (new_y > data->player.y
-		&& ft_get_map_row(data->map,
-			new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1')
-		new_y = data->player.y / BLOCK_Y * BLOCK_Y + (BLOCK_Y - 1);
-	data->player.x = new_x;
-	data->player.y = new_y;
+		&& (ft_get_map_row(data->map,
+				data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1'
+		|| ((BLOCK_X - (new_x % BLOCK_X - 1)) < x_offset
+			&& ft_get_map_row(data->map, data->player.y / BLOCK_Y)[new_x
+			/ BLOCK_X + 1] == '1')))
+		new_x = data->player.x / BLOCK_X * BLOCK_X
+			+ (BLOCK_X - 1 - x_offset);
+	ft_handle_collision_norminette(data, new_x, new_y);
 }
 
 /**

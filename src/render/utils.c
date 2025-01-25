@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:40:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:56:42 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
  */
 double	ft_dist(struct s_double_point a, struct s_double_point b, double angle)
 {
-	return (cos(angle) * (b.x - a.x) - sin(angle) * (b.y - a.y));
+	double	ret;
+
+	ret = cos(angle) * (b.x - a.x) - sin(angle) * (b.y - a.y);
+	return (ret);
 }
 
 /**
