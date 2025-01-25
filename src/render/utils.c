@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 16:56:42 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:38:51 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ double	ft_dist(struct s_double_point a, struct s_double_point b, double angle)
 /**
  * Norminette bypass. Try to set the \p ray,
  * if it wasn't set already or if we found a shorter one.
+ * "minimal_possible_dist" is a dirty hack thingy, but it works!
  * @param	ray				Ray to try to set.
  * @param	player_coords	Current players coords.
  * @param	ray_coords		Rays coords.
@@ -80,8 +81,9 @@ void	ft_try_to_set_the_ray(struct s_ray *ray,
 		double ray_angle)
 {
 	const double	dist = ft_dist(player_coords, ray_coords, ray_angle);
+	const double	minimal_possible_dist = 1.0f;
 
-	if (!ray->hit || ray->distance > dist)
+	if (dist >= minimal_possible_dist && (!ray->hit || ray->distance > dist))
 	{
 		ray->x = ray_coords.x;
 		ray->y = ray_coords.y;
