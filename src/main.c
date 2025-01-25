@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 02:20:05 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:00:13 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv)
 			ft_free_s_data_content(&data), EXIT_FAILURE);
 	ft_free_s_args_content(&args);
 	(void)ft_render(&data);
-	(void)mlx_key_hook(data.win, ft_handle_keysyms, &data);
 	(void)mlx_expose_hook(data.win, ft_render, &data);
+	(void)mlx_hook(data.win, KeyPress, KeyPressMask, ft_handle_keysyms, &data);
 	(void)mlx_hook(data.win, DestroyNotify, NoEventMask, ft_mlx_exit, &data);
 	(void)mlx_loop(data.conn);
 	return (0);

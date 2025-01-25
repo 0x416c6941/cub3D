@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 17:36:26 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:46:00 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_handle_collision_norminette(struct s_data *data,
 static void	ft_handle_collision(struct s_data *data,
 		int new_x, int new_y)
 {
-	const int	x_offset = BLOCK_X / 8;
+	const int	x_offset = BLOCK_X / 16;
 
 	if (new_x < data->player.x
 		&& (ft_get_map_row(data->map,
