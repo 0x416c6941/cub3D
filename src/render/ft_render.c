@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 17:07:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:12:33 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	ft_render(struct s_data *data)
 			&img.bits_per_pixel, &img.size_line, &img.endianness);
 	ft_draw_ceiling_and_floor(data, &img);
 	ft_draw_walls(data, &img);
-	printf("%d %d (%d %d): %c | %f\n", data->player.x, data->player.y,
+	ft_printf("%d %d (%d %d): %c | %f\n", data->player.x, data->player.y,
 		data->player.x / BLOCK_X, data->player.y / BLOCK_Y,
 		ft_get_map_row(data->map, data->player.y
 			/ BLOCK_Y)[data->player.x / BLOCK_X], data->player_angle.angle);
