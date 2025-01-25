@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:50:27 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:57:29 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	draw_line_data.fix_fisheye = data->player_angle.angle - ray.angle;
 	ray.distance = ray.distance * cos(draw_line_data.fix_fisheye);
 	draw_line_data.line_height = (((int)ft_strlen(data->map->content)
-				* (int)ft_lstsize(data->map)) * BLOCK_Y) / ray.distance;
+				* ft_lstsize(data->map)) * BLOCK_Y) / ray.distance;
 	if (draw_line_data.line_height > WIN_Y)
 		draw_line_data.line_height = WIN_Y;
 	draw_line_data.line_offset = WIN_Y / 2 - draw_line_data.line_height / 2;
