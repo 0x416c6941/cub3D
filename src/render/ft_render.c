@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:37:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:49:11 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,35 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data,
 }
 
 /**
+ * Draw a line on \p img based on cast \p ray values.
  * Thanks a lot to @3DSage.
- * TODO: Doc
+ * @param	data		cub3D's data.
+ * @param	img			Image where to draw al ine.
+ * @param	ray			Cast ray.
+ * @param	x_offset	On which x to start the drawing process.
  */
 static void	ft_draw_line(struct s_data *data, struct s_img *img,
 		struct s_ray ray, int x_offset)
 {
-	const double		fix_fisheye = data->player_angle.angle - ray.angle;
-	double				line_height;
-	double				line_offset;
+	struct s_draw_line	draw_line_data;
 	int					i;
 	int					j;
 	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
 
+	draw_line_data.fix_fisheye = data->player_angle.angle - ray.angle;
 	ray.distance = ray.distance * cos(fix_fisheye);
-	line_height = (((int)ft_strlen(data->map->content)
+	drwa_line_data.line_height = (((int)ft_strlen(data->map->content)
 				* (int)ft_lstsize(data->map)) * BLOCK_Y) / ray.distance;
-	if (line_height > WIN_Y)
-		line_height = WIN_Y;
-	line_offset = WIN_Y / 2 - line_height / 2;
+	if (draw_line_data.line_height > WIN_Y)
+		draw_line_data.line_height = WIN_Y;
+	draw_line_data.line_offset = WIN_Y / 2 - line_height / 2;
 	i = 0;
-	while (i < line_height)
+	while (i < draw_line_data.line_height)
 	{
 		j = 0;
 		while (j < WIN_X / FOV)
-			ft_pixel_put_on_image(img, x_offset + j++, line_offset + i, &red);
+			ft_pixel_put_on_image(img,
+				x_offset + j++, draw_line.line_offset + i, &red);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:38:45 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:45:37 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,16 @@ typedef struct s_double_point
 	double	x;
 	double	y;
 }	t_double_point;
+
+/**
+ * Yet another Norminette bypass, this time for ft_draw_line()!
+ */
+typedef struct s_draw_line
+{
+	double	fix_fisheye;
+	double	line_height;
+	double	line_offset;
+}	t_draw_line;
 
 /**
  * ----------------------------------------------------------------------------
