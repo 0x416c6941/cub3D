@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 17:13:25 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:37:56 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data,
  * @param	x_offset	On which x to start the drawing process.
  */
 static void	ft_draw_line(struct s_data *data, struct s_img *img,
-		struct s_ray ray, int x_offset)
+		struct s_ray ray, int x)
 {
 	struct s_draw_line	draw_line_data;
-	int					i;
 	int					j;
 	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
 
@@ -73,15 +72,9 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	if (draw_line_data.line_height > WIN_Y)
 		draw_line_data.line_height = WIN_Y;
 	draw_line_data.line_offset = WIN_Y / 2 - draw_line_data.line_height / 2;
-	i = 0;
-	while (i < draw_line_data.line_height)
-	{
-		j = 0;
-		while (j < WIN_X / FOV)
-			ft_pixel_put_on_image(img,
-				x_offset + j++, draw_line_data.line_offset + i, &red);
-		i++;
-	}
+	j = 0;
+	while (j < draw_line_data.line_height)
+		ft_pixel_put_on_image(img, x, draw_line_data.line_offset + j++, &red);
 }
 
 /**
@@ -99,9 +92,12 @@ static void	ft_draw_walls(struct s_data *data, struct s_img *img)
 	ft_horizontal_ray_cast(data, rays, FOV, gap_between_rays);
 	ft_vertical_ray_cast(data, rays, FOV, gap_between_rays);
 	i = 0;
-	while (i < FOV)
+	while (i < WIN_X)
 	{
-		ft_draw_line(data, img, rays[i], i * WIN_X / FOV);
+		if ((int)(i / ((WIN_X * 1.0f) / FOV)) >= FOV)
+			ft_draw_line(data, img, rays[FOV - 1], i);
+		else
+			ft_draw_line(data, img, rays[(int)(i / ((WIN_X * 1.0f) / FOV))], i);
 		i++;
 	}
 }

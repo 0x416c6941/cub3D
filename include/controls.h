@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:27:24 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 01:17:01 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:21:15 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * player is looking at.
  */
 # define MOV_EPS	8	/* cub3D.h -> BLOCK_X / 16. */
-# define ANGLE_EPS	0.2
+# define ANGLE_EPS	0.4
 
 /**
  * ----------------------------------------------------------------------------
