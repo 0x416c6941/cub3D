@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 19:19:53 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:50:22 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	double				line_height;
 	double				line_offset;
 	int					i;
+	int					j;
 	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
 
 	ray.distance = ray.distance * cos(fix_fisheye);
@@ -70,9 +71,13 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 		line_height = BLOCK_Y;
 	line_offset = BLOCK_Y / 2 - line_height / 2;
 	i = 0;
-	/* Should we cast line_height to int? */
 	while (i < line_height)
-		ft_pixel_put_on_image(img, x_offset, line_offset + i++, &red);
+	{
+		j = 0;
+		while (j < WIN_X / FOV)
+			ft_pixel_put_on_image(img, x_offset + j++, line_offset + i, &red);
+		i++;
+	}
 }
 
 /**
@@ -92,7 +97,7 @@ static void	ft_draw_walls(struct s_data *data, struct s_img *img)
 	i = 0;
 	while (i < FOV)
 	{
-		ft_draw_line(data, img, rays[i], i);
+		ft_draw_line(data, img, rays[i], i * WIN_X / FOV);
 		i++;
 	}
 }

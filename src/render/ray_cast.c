@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/24 19:09:31 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:02:19 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 			dist = ft_dist((t_double_point){data->player.x, data->player.y},
 					(t_double_point){cast_data->ray_x, cast_data->ray_y},
 					cast_data->ray_angle);
-			if (!ray->hit || ray->distance < dist)
+			if (!ray->hit || ray->distance > dist)
 			{
 				ray->x = cast_data->ray_x;
 				ray->y = cast_data->ray_y;
@@ -84,21 +84,19 @@ static void	ft_horizontal_ray_cast_handle_up_and_down(struct s_data *data,
 	if (cast_data->ray_angle < M_PI)
 	{
 		cast_data->ray_y = (data->player.y / BLOCK_Y * BLOCK_Y) - FOR_PRECISION;
-		cast_data->ray_x = (data->player.y - cast_data->ray_y)
-			* cast_data->ray_angle_tan + data->player.x;
+		cast_data->ray_x = data->player.x
+			- (data->player.y - cast_data->ray_y) * cast_data->ray_angle_tan;
 		cast_data->ray_y_offset = -BLOCK_Y;
-		/* This may be incorrent in our case. */
-		cast_data->ray_x_offset = -cast_data->ray_y_offset
+		cast_data->ray_x_offset = cast_data->ray_y_offset
 			* cast_data->ray_angle_tan;
 	}
 	else if (cast_data->ray_angle > M_PI)
 	{
 		cast_data->ray_y = (data->player.y / BLOCK_Y * BLOCK_Y) + BLOCK_Y;
-		cast_data->ray_x = (data->player.y - cast_data->ray_y)
-			* cast_data->ray_angle_tan + data->player.x;
+		cast_data->ray_x = data->player.x
+			- (data->player.y - cast_data->ray_y) * cast_data->ray_angle_tan;
 		cast_data->ray_y_offset = BLOCK_Y;
-		/* This may be incorrent in our case. */
-		cast_data->ray_x_offset = -cast_data->ray_y_offset
+		cast_data->ray_x_offset = cast_data->ray_y_offset
 			* cast_data->ray_angle_tan;
 	}
 }
@@ -124,7 +122,8 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 		cast_data.max_casting_iterations = BLOCK_X;
 	else
 		cast_data.max_casting_iterations = BLOCK_Y;
-	cast_data.ray_angle = data->player_angle.angle - ((fov / 2) * gap);
+	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
+			+ ((fov / 2) * gap));
 	while (cast_data.i < fov)
 	{
 		cast_data.ray_angle_tan = -1 / tan(cast_data.ray_angle);
@@ -136,7 +135,7 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 		}
 		ft_horizontal_ray_cast_handle_up_and_down(data, &cast_data);
 		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data);
-		cast_data.ray_angle += gap;
+		cast_data.ray_angle = ft_initialize_angle(cast_data.ray_angle - gap);
 		cast_data.i++;
 	}
 }
@@ -152,24 +151,23 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 static void	ft_vertical_ray_cast_handle_left_and_right(struct s_data *data,
 		struct s_ray_cast *cast_data)
 {
-	if (cast_data->ray_angle > UP && cast_data->ray_angle < DOWN)
+	if (cast_data->ray_angle > M_PI / 2 && cast_data->ray_angle < M_PI / 2 * 3)
 	{
 		cast_data->ray_x = (data->player.x / BLOCK_X * BLOCK_X) - FOR_PRECISION;
-		cast_data->ray_y = (data->player.x - cast_data->ray_x)
-			* cast_data->ray_angle_tan + data->player.y;
+		cast_data->ray_y = data->player.y
+			- (data->player.x - cast_data->ray_x) * cast_data->ray_angle_tan;
 		cast_data->ray_x_offset = -BLOCK_X;
-		/* This may be incorrent in our case. */
-		cast_data->ray_y_offset = -cast_data->ray_x_offset
+		cast_data->ray_y_offset = cast_data->ray_x_offset
 			* cast_data->ray_angle_tan;
 	}
-	else if (cast_data->ray_angle < UP || cast_data->ray_angle > DOWN)
+	else if (cast_data->ray_angle < M_PI / 2
+		|| cast_data->ray_angle > M_PI / 2 * 3)
 	{
-		cast_data->ray_x = (data->player.x / BLOCK_X * BLOCK_Y) + BLOCK_X;
-		cast_data->ray_y = (data->player.x - cast_data->ray_x)
-			* cast_data->ray_angle_tan + data->player.y;
+		cast_data->ray_x = (data->player.x / BLOCK_X * BLOCK_X) + BLOCK_X;
+		cast_data->ray_y = data->player.y
+			- (data->player.x - cast_data->ray_x) * cast_data->ray_angle_tan;
 		cast_data->ray_x_offset = BLOCK_X;
-		/* This may be incorrent in our case. */
-		cast_data->ray_y_offset = -cast_data->ray_x_offset
+		cast_data->ray_y_offset = cast_data->ray_x_offset
 			* cast_data->ray_angle_tan;
 	}
 }
@@ -197,7 +195,8 @@ void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 		cast_data.max_casting_iterations = BLOCK_X;
 	else
 		cast_data.max_casting_iterations = BLOCK_Y;
-	cast_data.ray_angle = data->player_angle.angle - ((fov / 2) * gap);
+	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
+			+ ((fov / 2) * gap));
 	while (cast_data.i < fov)
 	{
 		cast_data.ray_angle_tan = -tan(cast_data.ray_angle);
@@ -209,7 +208,7 @@ void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 		}
 		ft_vertical_ray_cast_handle_left_and_right(data, &cast_data);
 		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data);
-		cast_data.ray_angle += gap;
+		cast_data.ray_angle = ft_initialize_angle(cast_data.ray_angle - gap);
 		cast_data.i++;
 	}
 }
