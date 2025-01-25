@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:45:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:59:08 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,23 +113,23 @@ int				ft_render(struct s_data *data);
 
 /*
  * Horizontal ray casting.
- * @param	data	cub3D's data.
- * @param	rays	Out parameter. Where to store the rays information.
- * @param	fov		FOV. Size of \p rays. How many rays to cast.
- * @param	gap		Gap between \p rays.
+ * @param	data		cub3D's data.
+ * @param	rays		Out parameter. Where to store the rays information.
+ * @param	rays_size	How many rays to cast.
+ * @param	gap			Gap between \p rays.
  */
 void			ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
-					int fov, double gap);
+					int rays_size, double gap);
 
 /**
  * Vertical ray casting.
- * @param	data	cub3D's data.
- * @param	rays	Out parameter. Where to store the rays information.
- * @param	fov		FOV. Size of \p rays. How many rays to cast.
- * @param	gap		Gap between \p rays.
+ * @param	data		cub3D's data.
+ * @param	rays		Out parameter. Where to store the rays information.
+ * @param	rays_size	How many rays to cast.
+ * @param	gap			Gap between \p rays.
  */
 void			ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
-					int fov, double gap);
+					int rays_size, double gap);
 
 /**
  * Draws a \p pixel to a point [\p x, \p y] in \p img.

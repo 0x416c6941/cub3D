@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:39:42 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:58:08 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ static void	ft_horizontal_ray_cast_handle_up_and_down(struct s_data *data,
  * it's impossible for a ray to ever hit horizontal line.
  * Works differently if player looks up or down.
  * @brief	Horizontal ray casting.
- * @param	data	cub3D's data.
- * @param	rays	Out parameter. Where to store the rays information.
- * @param	fov		FOV. Size of \p rays. How many rays to cast.
- * @param	gap		Gap between \p rays.
+ * @param	data		cub3D's data.
+ * @param	rays		Out parameter. Where to store the rays information.
+ * @param	rays_size	How many rays to cast.
+ * @param	gap			Gap between \p rays.
  */
 void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
-		int fov, double gap)
+		int rays_size, double gap)
 {
 	struct s_ray_cast	cast_data;
 
@@ -110,8 +110,8 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 	else
 		cast_data.max_casting_iterations = BLOCK_Y;
 	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
-			+ ((fov / 2) * gap));
-	while (cast_data.i < fov)
+			+ ((rays_size / 2) * gap));
+	while (cast_data.i < rays_size)
 	{
 		cast_data.ray_angle_tan = -1 / tan(cast_data.ray_angle);
 		if (cast_data.ray_angle == LEFT || cast_data.ray_angle == RIGHT)
@@ -167,13 +167,13 @@ static void	ft_vertical_ray_cast_handle_left_and_right(struct s_data *data,
  * This is a code duplicate, however we can't pass more
  * than 4 parameters due to Norminette.
  * @brief	Horizontal ray casting.
- * @param	data	cub3D's data.
- * @param	rays	Out parameter. Where to store the rays information.
- * @param	fov		FOV. Size of \p rays. How many rays to cast.
- * @param	gap		Gap between \p rays.
+ * @param	data		cub3D's data.
+ * @param	rays		Out parameter. Where to store the rays information.
+ * @param	rays_size	How many rays to cast.
+ * @param	gap			Gap between \p rays.
  */
 void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
-		int fov, double gap)
+		int rays_size, double gap)
 {
 	struct s_ray_cast	cast_data;
 
@@ -183,8 +183,8 @@ void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 	else
 		cast_data.max_casting_iterations = BLOCK_Y;
 	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
-			+ ((fov / 2) * gap));
-	while (cast_data.i < fov)
+			+ ((rays_size / 2) * gap));
+	while (cast_data.i < rays_size)
 	{
 		cast_data.ray_angle_tan = -tan(cast_data.ray_angle);
 		if (cast_data.ray_angle == UP || cast_data.ray_angle == DOWN)

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 18:45:03 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:36:35 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,17 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
  */
 static void	ft_draw_walls(struct s_data *data, struct s_img *img)
 {
-	struct s_ray	rays[FOV];
-	const double	gap_between_rays = DEGREE;
+	struct s_ray	rays[WIN_X];
+	const double	gap_between_rays = DEGREE * ((FOV * 1.0f) / WIN_X);
 	int				i;
 
-	(void)ft_memset(rays, 0, sizeof(struct s_ray) * FOV);
-	ft_horizontal_ray_cast(data, rays, FOV, gap_between_rays);
-	ft_vertical_ray_cast(data, rays, FOV, gap_between_rays);
+	(void)ft_memset(rays, 0, sizeof(struct s_ray) * WIN_X);
+	ft_horizontal_ray_cast(data, rays, WIN_X, gap_between_rays);
+	ft_vertical_ray_cast(data, rays, WIN_X, gap_between_rays);
 	i = 0;
 	while (i < WIN_X)
 	{
-		if ((int)(i / ((WIN_X * 1.0f) / FOV)) >= FOV)
-			ft_draw_line(data, img, rays[FOV - 1], i);
-		else
-			ft_draw_line(data, img, rays[(int)(i / ((WIN_X * 1.0f) / FOV))], i);
+		ft_draw_line(data, img, rays[i], i);
 		i++;
 	}
 }
