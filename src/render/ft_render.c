@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 15:49:11 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:50:27 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	const struct s_rgb	red = (struct s_rgb){255, 255, 0, true};
 
 	draw_line_data.fix_fisheye = data->player_angle.angle - ray.angle;
-	ray.distance = ray.distance * cos(fix_fisheye);
-	drwa_line_data.line_height = (((int)ft_strlen(data->map->content)
+	ray.distance = ray.distance * cos(draw_line_data.fix_fisheye);
+	draw_line_data.line_height = (((int)ft_strlen(data->map->content)
 				* (int)ft_lstsize(data->map)) * BLOCK_Y) / ray.distance;
 	if (draw_line_data.line_height > WIN_Y)
 		draw_line_data.line_height = WIN_Y;
-	draw_line_data.line_offset = WIN_Y / 2 - line_height / 2;
+	draw_line_data.line_offset = WIN_Y / 2 - draw_line_data.line_height / 2;
 	i = 0;
 	while (i < draw_line_data.line_height)
 	{
 		j = 0;
 		while (j < WIN_X / FOV)
 			ft_pixel_put_on_image(img,
-				x_offset + j++, draw_line.line_offset + i, &red);
+				x_offset + j++, draw_line_data.line_offset + i, &red);
 		i++;
 	}
 }
