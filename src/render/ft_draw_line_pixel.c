@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:01:34 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 19:51:54 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:09:55 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,11 @@ void	ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
 	if (draw_line_data->line_height <= WIN_Y)
 		y = (draw_line_data->i - draw_line_data->top_pixel)
 			* ((TILE_SIZE * 1.0f) / (draw_line_data->bottom_pixel
-						- draw_line_data->top_pixel));
+					- draw_line_data->top_pixel));
 	else
-		y = draw_line_data->i * ((TILE_SIZE * 1.0f) / WIN_Y);
-		/*
 		y = (draw_line_data->line_height - WIN_Y) / TILE_SIZE
-				+ draw_line_data->i / TILE_SIZE;
-		 */
+			+ draw_line_data->i * ((TILE_SIZE * 1.0f)
+				/ draw_line_data->line_height);
 	if (draw_line_data->texture_index == TEXTURE_NO)
 		pixel = ft_pixel_get_from_image(draw_line_data->texture, ray->x, y);
 	else if (draw_line_data->texture_index == TEXTURE_SO)
