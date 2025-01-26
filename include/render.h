@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:12:25 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:41:09 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void			ft_try_to_set_the_ray(struct s_ray *ray,
 					struct s_double_point ray_coords, double ray_angle);
 
 /**
- * Sets the textures and "should_invert_y" attribute in \p out.
+ * Sets the "texture" and "texture_index" attributes in \p out.
  * @param	data	cub3D's data.
  * @param	ray		Information on where did the cast ray lay.
  * @param	out		Out parameter.

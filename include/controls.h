@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:27:24 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 20:56:53 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:39:16 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
  * In case of movement, value of MOV_EPS will be amplified by the angle
  * player is looking at.
  */
-# define MOV_EPS	1
-# define ANGLE_EPS	0.05
+# define MOV_EPS	1.5
+# define ANGLE_EPS	0.1
 
 /**
  * ----------------------------------------------------------------------------

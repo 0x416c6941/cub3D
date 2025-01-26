@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/26 17:55:39 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:38:14 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  * This file contains different constants and structure definitions.
  * Thanks a lot to @3DSage. Their resources and guides were really useful!
  * Also thanks to Oceano (@suspectedoceano)
- * for showing tricks on how to work with MLX efficiently!
+ * for showing tricks on how to work with MLX efficiently,
+ * and for Ahmed Fatir (@afatir) for showing some useful render tricks!
  */
 
 # include <libft.h>
@@ -32,15 +33,15 @@
  * For t_args.
  */
 /* Textures and their indexes. */
-# define TEXTURES_SIZE 4
-# define TEXTURE_NO 0
-# define TEXTURE_SO 1
-# define TEXTURE_WE 2
-# define TEXTURE_EA 3
+# define TEXTURES_SIZE	4
+# define TEXTURE_NO		0
+# define TEXTURE_SO		1
+# define TEXTURE_WE		2
+# define TEXTURE_EA		3
 /* Colors and their indexes. */
-# define COLORS_SIZE 2
-# define COLOR_FLOOR 0
-# define COLOR_CEILING 1
+# define COLORS_SIZE	2
+# define COLOR_FLOOR	0
+# define COLOR_CEILING	1
 
 /**
  * We don't want to go through too fancy resolution,
@@ -67,6 +68,7 @@
  * Values returned by cos(), sin()
  * and other trigonometric functions may be too small.
  * To fix that, we'll amplify their return values.
+ * Used primarily in "movements" part of controls.
  */
 # define TF_AMP	5
 
@@ -78,12 +80,12 @@
 /**
  * For system crashes: malloc, write...
  */
-# define FATAL_ERROR -1
-# define ERR_USAGE "usage: ./cub3d <path/to/map.cub>"
-/* parameter which is not he map and we can't identify */
-# define INV_PAR 1
-/* one of parameter is duplicated */
-# define DUP_PAR 2
+# define FATAL_ERROR	-1
+# define ERR_USAGE		"usage: ./cub3d <path/to/map.cub>"
+/* Parameter which we can't identify. */
+# define INV_PAR		1
+/* Some parameter is duplicated. */
+# define DUP_PAR		2
 
 /**
  * ----------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:44:24 by root              #+#    #+#             */
-/*   Updated: 2025/01/25 21:00:13 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:31:44 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_errmsg("invalid number of parameters", ERR_USAGE, 2));
-	(void)argv;
 	(void)ft_memset(&args, 0, sizeof(struct s_args));
 	if (ft_parse(*(++argv), &args) != 0)
 		return (ft_free_s_args_content(&args), EXIT_FAILURE);
