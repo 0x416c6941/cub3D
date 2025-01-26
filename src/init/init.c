@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 13:12:42 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:00:23 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 #include <stdlib.h>
 #include <utils.h>
 #include <math.h>
-
-/**
- * cub3D.h -> BLOCK_X / 2, BLOCK_Y / 2.
- */
-#define BLOCK_X_MIDDLE	32
-#define BLOCK_Y_MIDDLE	32
 
 /**
  * May be required to access some defines (like M_PI) on older platforms.
@@ -144,8 +138,8 @@ static void	ft_init_player(struct s_data *data)
 			if (current_row[j] == 'N' || current_row[j] == 'S'
 				|| current_row[j] == 'E' || current_row[j] == 'W')
 			{
-				data->player.x = j * BLOCK_X + BLOCK_X_MIDDLE;
-				data->player.y = i * BLOCK_Y + BLOCK_Y_MIDDLE;
+				data->player.x = j * TILE_SIZE + TILE_SIZE / 2;
+				data->player.y = i * TILE_SIZE + TILE_SIZE / 2;
 				ft_init_player_angle(data, current_row[j]);
 				return ;
 			}

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:01:34 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 17:46:08 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:04:28 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ static void	ft_draw_line_pixel_handle_line_height_not_bigger_than_win_y(
 	if (arg.draw_line_data->texture_index == TEXTURE_NO)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
 				arg.ray->x,
-				arg.draw_line_data->i * ((BLOCK_Y * 1.0f)
+				arg.draw_line_data->i * ((TILE_SIZE * 1.0f)
 					/ arg.draw_line_data->line_height));
 	else if (arg.draw_line_data->texture_index == TEXTURE_SO)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
-				(BLOCK_X - 1) - ((int)arg.ray->x % BLOCK_X),
-				arg.draw_line_data->i * ((BLOCK_Y * 1.0f)
+				(TILE_SIZE - 1) - ((int)arg.ray->x % TILE_SIZE),
+				arg.draw_line_data->i * ((TILE_SIZE * 1.0f)
 					/ arg.draw_line_data->line_height));
 	else if (arg.draw_line_data->texture_index == TEXTURE_WE)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
-				(BLOCK_Y - 1) - ((int)arg.ray->y % BLOCK_Y),
-				arg.draw_line_data->i * ((BLOCK_Y * 1.0f)
+				(TILE_SIZE - 1) - ((int)arg.ray->y % TILE_SIZE),
+				arg.draw_line_data->i * ((TILE_SIZE * 1.0f)
 					/ arg.draw_line_data->line_height));
 	else if (arg.draw_line_data->texture_index == TEXTURE_EA)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
 				arg.ray->y,
-				arg.draw_line_data->i * ((BLOCK_Y * 1.0f)
+				arg.draw_line_data->i * ((TILE_SIZE * 1.0f)
 					/ arg.draw_line_data->line_height));
 }
 
@@ -53,31 +53,31 @@ static void	ft_draw_line_pixel_handle_line_height_not_bigger_than_win_y(
 static void	ft_draw_line_pixel_handle_line_height_bigger_than_win_y(
 		struct s_draw_line_pixel_norminette arg)
 {
-	const double	padding = BLOCK_Y * (1
+	const double	padding = TILE_SIZE * (1
 			- ((WIN_Y * 1.0f) / arg.draw_line_data->line_height));
 
 	if (!(arg.draw_line_data->line_height > WIN_Y))
 		return ;
 	if (arg.draw_line_data->texture_index == TEXTURE_NO)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
-				padding + arg.ray->x * (((BLOCK_X - padding) - padding)
+				padding + arg.ray->x * (((TILE_SIZE - padding) - padding)
 					/ arg.draw_line_data->until),
-				padding + arg.draw_line_data->i * (((BLOCK_Y - padding)
+				padding + arg.draw_line_data->i * (((TILE_SIZE - padding)
 						- padding) / arg.draw_line_data->until));
 	else if (arg.draw_line_data->texture_index == TEXTURE_SO)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
-				(BLOCK_X - 1) - ((int)arg.ray->x % BLOCK_X),
-				padding + arg.draw_line_data->i * (((BLOCK_Y - padding)
+				(TILE_SIZE - 1) - ((int)arg.ray->x % TILE_SIZE),
+				padding + arg.draw_line_data->i * (((TILE_SIZE - padding)
 						- padding) / arg.draw_line_data->until));
 	else if (arg.draw_line_data->texture_index == TEXTURE_WE)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
-				(BLOCK_Y - 1) - ((int)arg.ray->y % BLOCK_Y),
-				padding + arg.draw_line_data->i * (((BLOCK_Y - padding)
+				(TILE_SIZE - 1) - ((int)arg.ray->y % TILE_SIZE),
+				padding + arg.draw_line_data->i * (((TILE_SIZE - padding)
 						- padding) / arg.draw_line_data->until));
 	else if (arg.draw_line_data->texture_index == TEXTURE_EA)
 		*arg.pixel = ft_pixel_get_from_image(arg.draw_line_data->texture,
 				arg.ray->y,
-				padding + arg.draw_line_data->i * (((BLOCK_Y - padding)
+				padding + arg.draw_line_data->i * (((TILE_SIZE - padding)
 						- padding) / arg.draw_line_data->until));
 }
 

@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 18:58:08 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:02:18 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 	while (cast_data->casting_iteration < cast_data->max_casting_iterations)
 	{
 		/* Should cast_data->ray_x and cast_data->ray_y be cast to int? */
-		cast_data->map.x = cast_data->ray_x / BLOCK_X;
-		cast_data->map.y = cast_data->ray_y / BLOCK_Y;
+		cast_data->map.x = cast_data->ray_x / TILE_SIZE;
+		cast_data->map.y = cast_data->ray_y / TILE_SIZE;
 		if ((cast_data->map.x >= 0 && cast_data->map.y >= 0)
 			&& (cast_data->map.x < data->map_size.x
 				&& cast_data->map.y < data->map_size.y)
@@ -70,19 +70,20 @@ static void	ft_horizontal_ray_cast_handle_up_and_down(struct s_data *data,
 {
 	if (cast_data->ray_angle < M_PI)
 	{
-		cast_data->ray_y = (data->player.y / BLOCK_Y * BLOCK_Y) - FOR_PRECISION;
+		cast_data->ray_y = (data->player.y / TILE_SIZE * TILE_SIZE)
+			- FOR_PRECISION;
 		cast_data->ray_x = data->player.x
 			- (data->player.y - cast_data->ray_y) * cast_data->ray_angle_tan;
-		cast_data->ray_y_offset = -BLOCK_Y;
+		cast_data->ray_y_offset = -TILE_SIZE;
 		cast_data->ray_x_offset = cast_data->ray_y_offset
 			* cast_data->ray_angle_tan;
 	}
 	else if (cast_data->ray_angle > M_PI)
 	{
-		cast_data->ray_y = (data->player.y / BLOCK_Y * BLOCK_Y) + BLOCK_Y;
+		cast_data->ray_y = (data->player.y / TILE_SIZE * TILE_SIZE) + TILE_SIZE;
 		cast_data->ray_x = data->player.x
 			- (data->player.y - cast_data->ray_y) * cast_data->ray_angle_tan;
-		cast_data->ray_y_offset = BLOCK_Y;
+		cast_data->ray_y_offset = TILE_SIZE;
 		cast_data->ray_x_offset = cast_data->ray_y_offset
 			* cast_data->ray_angle_tan;
 	}
@@ -105,10 +106,7 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 	struct s_ray_cast	cast_data;
 
 	(void)ft_memset(&cast_data, 0, sizeof(struct s_ray_cast));
-	if (BLOCK_X < BLOCK_Y)
-		cast_data.max_casting_iterations = BLOCK_X;
-	else
-		cast_data.max_casting_iterations = BLOCK_Y;
+	cast_data.max_casting_iterations = TILE_SIZE;
 	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
 			+ ((rays_size / 2) * gap));
 	while (cast_data.i < rays_size)
@@ -140,20 +138,21 @@ static void	ft_vertical_ray_cast_handle_left_and_right(struct s_data *data,
 {
 	if (cast_data->ray_angle > M_PI / 2 && cast_data->ray_angle < M_PI / 2 * 3)
 	{
-		cast_data->ray_x = (data->player.x / BLOCK_X * BLOCK_X) - FOR_PRECISION;
+		cast_data->ray_x = (data->player.x / TILE_SIZE * TILE_SIZE)
+			- FOR_PRECISION;
 		cast_data->ray_y = data->player.y
 			- (data->player.x - cast_data->ray_x) * cast_data->ray_angle_tan;
-		cast_data->ray_x_offset = -BLOCK_X;
+		cast_data->ray_x_offset = -TILE_SIZE;
 		cast_data->ray_y_offset = cast_data->ray_x_offset
 			* cast_data->ray_angle_tan;
 	}
 	else if (cast_data->ray_angle < M_PI / 2
 		|| cast_data->ray_angle > M_PI / 2 * 3)
 	{
-		cast_data->ray_x = (data->player.x / BLOCK_X * BLOCK_X) + BLOCK_X;
+		cast_data->ray_x = (data->player.x / TILE_SIZE * TILE_SIZE) + TILE_SIZE;
 		cast_data->ray_y = data->player.y
 			- (data->player.x - cast_data->ray_x) * cast_data->ray_angle_tan;
-		cast_data->ray_x_offset = BLOCK_X;
+		cast_data->ray_x_offset = TILE_SIZE;
 		cast_data->ray_y_offset = cast_data->ray_x_offset
 			* cast_data->ray_angle_tan;
 	}
@@ -178,10 +177,7 @@ void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 	struct s_ray_cast	cast_data;
 
 	(void)ft_memset(&cast_data, 0, sizeof(struct s_ray_cast));
-	if (BLOCK_X < BLOCK_Y)
-		cast_data.max_casting_iterations = BLOCK_X;
-	else
-		cast_data.max_casting_iterations = BLOCK_Y;
+	cast_data.max_casting_iterations = TILE_SIZE;
 	cast_data.ray_angle = ft_initialize_angle(data->player_angle.angle
 			+ ((rays_size / 2) * gap));
 	while (cast_data.i < rays_size)

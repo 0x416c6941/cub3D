@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 16:10:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:56:31 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,10 @@ void			ft_pixel_put_on_image(struct s_img *img, int x, int y,
 
 /**
  * Gets pixel from \p img with coordinates \p x and \p y.
- * If \p x or \p y are bigger than BLOCK_X or BLOCK_Y respectively,
- * they'll get modulo'ed by BLOCK_X or BLOCK_Y respectively.
+ * If \p x or \p y are bigger than TILE_SIZE,
+ * they'll get modulo'ed by TILE_SIZE.
  * Does the scaling of the image, if it's not exactly
- * BLOCK_X pixels wide or BLOCK_Y pixels tall.
+ * TILE_SIZE pixels wide or TILE_SIZE pixels tall.
  * @warning	\p x and \p y can't be negative.
  * @param	img		Image to get pixel from.
  * @param	x		x coordinate.
