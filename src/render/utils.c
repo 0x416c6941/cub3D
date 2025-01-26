@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 16:03:40 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:36:57 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 	if (img == NULL)
 		return (black);
 	(void)ft_memset(&ret, 0, sizeof(struct s_rgb));
+	if (x < 0)
+		x = -x;
+	if (y < 0)
+		y = -y;
 	if (x >= BLOCK_X)
 		x %= BLOCK_X;
 	if (y >= BLOCK_Y)
