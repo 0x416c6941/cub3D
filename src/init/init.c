@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/22 21:06:13 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 04:49:23 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ static int	ft_prep_mlx_read_textures(const struct s_args *args,
  * Prepares MLX: opens the connection, window
  * and reads all textures from \p args.
  * If after some X11 function failed errno is set 0, we'll set it to EACCES.
+ * Note: Valgrind tells us that some syscall points to uninitialized value
+ * created by mlx_int_anti_resize_win().
+ * It's not our fault - it's created by MiniLibX.
+ * We do everything in accordance to its manpages.
  * @param	args	Parsed arguments.
  * @param	data	Where to save MLX connection, window and textures.
  * @return	-1, if something went wrong. errno will also be set;
