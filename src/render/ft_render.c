@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 18:03:09 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:24:31 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data, struct s_img *img)
 
 /**
  * Draw a line to \p img based on cast \p ray values.
- * Thanks a lot to @3DSage.
+ * Thanks a lot to @3DSage and @afatir.
  * @param	data		cub3D's data.
  * @param	img			Where to draw a line.
  * @param	ray			Cast ray.
@@ -66,17 +66,17 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	draw_line_data.fix_fisheye = ft_initialize_angle(data->player_angle.angle
 			- ray->angle);
 	ray->distance = ray->distance * cos(draw_line_data.fix_fisheye);
-	draw_line_data.line_height = WIN_Y * TILE_SIZE / ray->distance;
-	draw_line_data.line_offset = WIN_Y / 2 - draw_line_data.line_height / 2;
-	if (draw_line_data.line_height > WIN_Y)
-		draw_line_data.line_offset = 0;
+	draw_line_data.line_height = (TILE_SIZE / ray->distance)
+		* ((WIN_X / 2) / tan((FOV * DEGREE) / 2));
+	draw_line_data.top_pixel = (WIN_Y / 2) - (draw_line_data.line_height / 2);
+	draw_line_data.bottom_pixel = (WIN_Y / 2) + (draw_line_data.line_height / 2);
+	if (draw_line_data.top_pixel < 0)
+		draw_line_data.top_pixel = 0;
+	if (draw_line_data.bottom_pixel > WIN_Y)
+		draw_line_data.bottom_pixel = WIN_Y;
 	ft_set_texture(data, ray, &draw_line_data);
-	draw_line_data.i = 0;
-	if (draw_line_data.line_height > WIN_Y)
-		draw_line_data.until = WIN_Y;
-	else
-		draw_line_data.until = draw_line_data.line_height;
-	while (draw_line_data.i < draw_line_data.until)
+	draw_line_data.i = round(draw_line_data.top_pixel);
+	while (draw_line_data.i < draw_line_data.bottom_pixel)
 	{
 		ft_draw_line_pixel(img, ray, &draw_line_data, x);
 		draw_line_data.i++;

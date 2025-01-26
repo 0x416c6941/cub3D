@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 17:56:31 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:44:19 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,11 @@ typedef struct s_draw_line
 {
 	double			fix_fisheye;
 	double			line_height;
-	double			line_offset;
+	double			top_pixel;		/* With minimum y (top of the screen). */
+	double			bottom_pixel;	/* With maximum y (bottom of the screen). */
 	struct s_img	*texture;
 	int				texture_index;
-	/* \ref until is basically a \ref line_height limited to WIN_Y. */
-	int				i;
-	int				until;
+	int				i;				/* For loop to draw pixels. */
 }	t_draw_line;
 
 /**
