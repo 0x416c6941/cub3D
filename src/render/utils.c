@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 16:36:57 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:03:02 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 		x = -x;
 	if (y < 0)
 		y = -y;
-	if (x >= BLOCK_X)
-		x %= BLOCK_X;
-	if (y >= BLOCK_Y)
-		y %= BLOCK_Y;
-	offset = (int)((x * ((img->width * 1.0f) / BLOCK_X))
+	if (x >= TILE_SIZE)
+		x %= TILE_SIZE;
+	if (y >= TILE_SIZE)
+		y %= TILE_SIZE;
+	offset = (int)((x * ((img->width * 1.0f) / TILE_SIZE))
 			* (img->bits_per_pixel / OCTET)) + (img->size_line
-			* (int)(y * ((img->height * 1.0f) / BLOCK_Y)));
+			* (int)(y * ((img->height * 1.0f) / TILE_SIZE)));
 	pixel = ((unsigned int *)(img->img_pixels + offset));
 	ret.r = *pixel >> OCTET * 2;
 	ret.g = *pixel >> OCTET;
@@ -103,22 +103,22 @@ void	ft_set_texture(struct s_data *data, struct s_ray *ray,
 		struct s_draw_line *out)
 {
 	out->texture_index = -1;
-	if ((int)ray->y % BLOCK_Y == BLOCK_Y - 1)
+	if ((int)ray->y % TILE_SIZE == TILE_SIZE - 1)
 	{
 		out->texture = &data->textures[TEXTURE_NO];
 		out->texture_index = TEXTURE_NO;
 	}
-	else if ((int)ray->y % BLOCK_Y == 0)
+	else if ((int)ray->y % TILE_SIZE == 0)
 	{
 		out->texture = &data->textures[TEXTURE_SO];
 		out->texture_index = TEXTURE_SO;
 	}
-	else if ((int)ray->x % BLOCK_X == BLOCK_X - 1)
+	else if ((int)ray->x % TILE_SIZE == TILE_SIZE - 1)
 	{
 		out->texture = &data->textures[TEXTURE_WE];
 		out->texture_index = TEXTURE_WE;
 	}
-	else if ((int)ray->x % BLOCK_X == 0)
+	else if ((int)ray->x % TILE_SIZE == 0)
 	{
 		out->texture = &data->textures[TEXTURE_EA];
 		out->texture_index = TEXTURE_EA;

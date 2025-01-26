@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 21:00:34 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:27:58 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,31 @@
 static void	ft_handle_collision_norminette(struct s_data *data,
 		int new_x, int new_y)
 {
-	const int	y_offset = BLOCK_Y / 16;
+	const int	y_offset = TILE_SIZE / 16;
 
 	if (new_y < data->player.y
 		&& (ft_get_map_row(data->map,
-				new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1'
-		|| (new_y % BLOCK_Y < y_offset
-			&& ft_get_map_row(data->map, new_y / BLOCK_Y - 1)[data->player.x
-			/ BLOCK_X] == '1')))
-		new_y = data->player.y / BLOCK_Y * BLOCK_Y + y_offset;
+				new_y / TILE_SIZE)[data->player.x / TILE_SIZE] == '1'
+		|| (new_y % TILE_SIZE < y_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE - 1)
+			[data->player.x / TILE_SIZE] == '1')))
+		new_y = data->player.y / TILE_SIZE * TILE_SIZE + y_offset;
 	else if (new_y > data->player.y
 		&& (ft_get_map_row(data->map,
-				new_y / BLOCK_Y)[data->player.x / BLOCK_X] == '1'
-		|| ((BLOCK_Y - (new_y % BLOCK_Y - 1)) < y_offset
-			&& ft_get_map_row(data->map, new_y / BLOCK_Y + 1)[data->player.x
-			/ BLOCK_X] == '1')))
-		new_y = data->player.y / BLOCK_Y * BLOCK_Y
-			+ (BLOCK_Y - 1 - y_offset);
+				new_y / TILE_SIZE)[data->player.x / TILE_SIZE] == '1'
+		|| (((TILE_SIZE - 1) - new_y % TILE_SIZE) < y_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE + 1)
+			[data->player.x / TILE_SIZE] == '1')))
+		new_y = data->player.y / TILE_SIZE * TILE_SIZE
+			+ ((TILE_SIZE - 1) - y_offset);
 	data->player.x = new_x;
 	data->player.y = new_y;
 }
 
 /**
  * Moves the player to new \p new_x and \p new_y, while handling collision.
- * @warning	It's up to you to make sure that \p new_x / BLOCK_X
- * 			and \p new_y / BLOCK_Y aren't out of bounds of the map.
+ * @warning	It's up to you to make sure that \p new_x / TILE_SIZE
+ * 			and \p new_y / TILE_SIZE aren't out of bounds of the map.
  * @param	data	cub3D's data.
  * @param	new_x	Player's new x coordinate.
  * @param	new_y	Player's new y coordinate.
@@ -61,23 +61,23 @@ static void	ft_handle_collision_norminette(struct s_data *data,
 static void	ft_handle_collision(struct s_data *data,
 		int new_x, int new_y)
 {
-	const int	x_offset = BLOCK_X / 16;
+	const int	x_offset = TILE_SIZE / 16;
 
 	if (new_x < data->player.x
 		&& (ft_get_map_row(data->map,
-				data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1'
-		|| (new_x % BLOCK_X < x_offset
-			&& ft_get_map_row(data->map, data->player.y / BLOCK_Y)[new_x
-			/ BLOCK_X - 1] == '1')))
-		new_x = data->player.x / BLOCK_X * BLOCK_X + x_offset;
+				data->player.y / TILE_SIZE)[new_x / TILE_SIZE] == '1'
+		|| (new_x % TILE_SIZE < x_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)
+			[data->player.x / TILE_SIZE - 1] == '1')))
+		new_x = data->player.x / TILE_SIZE * TILE_SIZE + x_offset;
 	else if (new_x > data->player.x
 		&& (ft_get_map_row(data->map,
-				data->player.y / BLOCK_Y)[new_x / BLOCK_X] == '1'
-		|| ((BLOCK_X - (new_x % BLOCK_X - 1)) < x_offset
-			&& ft_get_map_row(data->map, data->player.y / BLOCK_Y)[new_x
-			/ BLOCK_X + 1] == '1')))
-		new_x = data->player.x / BLOCK_X * BLOCK_X
-			+ (BLOCK_X - 1 - x_offset);
+				data->player.y / TILE_SIZE)[new_x / TILE_SIZE] == '1'
+		|| (((TILE_SIZE - 1) - new_x % TILE_SIZE) < x_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)
+			[data->player.x / TILE_SIZE + 1] == '1')))
+		new_x = data->player.x / TILE_SIZE * TILE_SIZE
+			+ ((TILE_SIZE - 1) - x_offset);
 	ft_handle_collision_norminette(data, new_x, new_y);
 }
 
@@ -134,6 +134,8 @@ int	ft_handle_keysyms(int keycode, struct s_data *data)
 		ft_handle_movement(keycode, data);
 	else if (keycode == XKB_KEY_Left || keycode == XKB_KEY_Right)
 		ft_handle_angle(keycode, data);
+	else
+		return (0);
 	(void)ft_render(data);
 	return (0);
 }

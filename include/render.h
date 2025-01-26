@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 16:10:47 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:12:25 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,25 +95,12 @@ typedef struct s_draw_line
 {
 	double			fix_fisheye;
 	double			line_height;
-	double			line_offset;
+	double			top_pixel;		/* With minimum y (top of the screen). */
+	double			bottom_pixel;	/* With maximum y (bottom of the screen). */
 	struct s_img	*texture;
 	int				texture_index;
-	/* \ref until is basically a \ref line_height limited to WIN_Y. */
-	int				i;
-	int				until;
+	int				img_y;			/* y coordinate where to draw pixel. */
 }	t_draw_line;
-
-/**
- * ... I got no words.
- */
-typedef struct s_draw_line_pixel_norminette
-{
-	struct s_img		*img;
-	struct s_ray		*ray;
-	struct s_draw_line	*draw_line_data;
-	int					x;
-	struct s_rgb		*pixel;
-}	t_draw_line_pixel_norminette;
 
 /**
  * ----------------------------------------------------------------------------
@@ -153,10 +140,10 @@ void			ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
  * @param	img				Image where to draw it.
  * @param	ray				Information where did the cast ray lay.
  * @param	draw_line_data	Data calculated in ft_draw_line().
- * @param	x				x coordinate of a pixel to draw.
+ * @param	img_x			x coordinate on \p img where to draw the pixel.
  */
 void			ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
-					struct s_draw_line *draw_line_data, int x);
+					struct s_draw_line *draw_line_data, int img_x);
 
 /**
  * Draws a \p pixel to a point [\p x, \p y] in \p img.
@@ -170,10 +157,10 @@ void			ft_pixel_put_on_image(struct s_img *img, int x, int y,
 
 /**
  * Gets pixel from \p img with coordinates \p x and \p y.
- * If \p x or \p y are bigger than BLOCK_X or BLOCK_Y respectively,
- * they'll get modulo'ed by BLOCK_X or BLOCK_Y respectively.
+ * If \p x or \p y are bigger than TILE_SIZE,
+ * they'll get modulo'ed by TILE_SIZE.
  * Does the scaling of the image, if it's not exactly
- * BLOCK_X pixels wide or BLOCK_Y pixels tall.
+ * TILE_SIZE pixels wide or TILE_SIZE pixels tall.
  * @warning	\p x and \p y can't be negative.
  * @param	img		Image to get pixel from.
  * @param	x		x coordinate.
