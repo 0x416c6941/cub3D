@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:47:15 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 04:49:23 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:12:42 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 /**
  * cub3D.h -> BLOCK_X / 2, BLOCK_Y / 2.
  */
-#define BLOCK_X_MIDDLE	64
-#define BLOCK_Y_MIDDLE	64
+#define BLOCK_X_MIDDLE	32
+#define BLOCK_Y_MIDDLE	32
 
 /**
  * May be required to access some defines (like M_PI) on older platforms.
