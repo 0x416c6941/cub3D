@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 13:54:44 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:10:47 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,24 @@ typedef struct s_draw_line
 	double			fix_fisheye;
 	double			line_height;
 	double			line_offset;
-	bool			should_invert_coords;
 	struct s_img	*texture;
+	int				texture_index;
 	/* \ref until is basically a \ref line_height limited to WIN_Y. */
 	int				i;
 	int				until;
 }	t_draw_line;
+
+/**
+ * ... I got no words.
+ */
+typedef struct s_draw_line_pixel_norminette
+{
+	struct s_img		*img;
+	struct s_ray		*ray;
+	struct s_draw_line	*draw_line_data;
+	int					x;
+	struct s_rgb		*pixel;
+}	t_draw_line_pixel_norminette;
 
 /**
  * ----------------------------------------------------------------------------
@@ -135,6 +147,16 @@ void			ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
  */
 void			ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 					int rays_size, double gap);
+
+/**
+ * Draws a pixel to \p image.
+ * @param	img				Image where to draw it.
+ * @param	ray				Information where did the cast ray lay.
+ * @param	draw_line_data	Data calculated in ft_draw_line().
+ * @param	x				x coordinate of a pixel to draw.
+ */
+void			ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
+					struct s_draw_line *draw_line_data, int x);
 
 /**
  * Draws a \p pixel to a point [\p x, \p y] in \p img.

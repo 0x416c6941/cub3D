@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 13:57:59 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:02:21 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,43 +48,6 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data, struct s_img *img)
 			ft_pixel_put_on_image(img, j++, i, &data->colors[COLOR_FLOOR]);
 		i++;
 	}
-}
-
-/**
- * Draws a pixel to \p image.
- * @param	img				Image where to draw it.
- * @param	ray				Information where did the cast ray lay.
- * @param	draw_line_data	Data calculated in ft_draw_line().
- * @param	x				x coordinate of a pixel to draw.
- */
-void	ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
-		struct s_draw_line *draw_line_data, int x)
-{
-	struct s_rgb	pixel;
-
-	if (draw_line_data->line_height <= WIN_Y)
-	{
-		if (draw_line_data->should_invert_coords == false)
-			pixel = ft_pixel_get_from_image(draw_line_data->texture,
-					ray->y,
-					draw_line_data->i * ((BLOCK_Y * 1.0f)
-						/ draw_line_data->line_height));
-		else
-			pixel = ft_pixel_get_from_image(draw_line_data->texture,
-					ray->x,
-					draw_line_data->i * ((BLOCK_Y * 1.0f)
-						/ draw_line_data->line_height));
-	}
-	else
-		pixel = (struct s_rgb){255, 255, 255, true};
-		/*
-		pixel = ft_pixel_get_from_image(draw_line_data->texture,
-				ray->x,
-				draw_line_data->i * ((BLOCK_Y * 1.0f)
-					/ draw_line_data->line_height));
-	 	 */
-	ft_pixel_put_on_image(img,
-		x, draw_line_data->line_offset + draw_line_data->i, &pixel);
 }
 
 /**

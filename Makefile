@@ -18,7 +18,8 @@ SRC_FILES = main.c							\
 		parse/ft_map_clean_validate_utils.c parse/utils.c	\
 		init/init.c init/free_content.c init/utils.c		\
 		controls.c						\
-		render/ft_render.c render/ray_cast.c render/utils.c
+		render/ft_render.c render/ray_cast.c			\
+		render/ft_draw_line_pixel.c render/utils.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 

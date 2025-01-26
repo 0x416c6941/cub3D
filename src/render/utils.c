@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 14:35:41 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:03:40 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_pixel_put_on_image(struct s_img *img, int x, int y,
 {
 	int				offset;
 	unsigned int	to_put;
-	(void)to_put;
 
 	offset = (x * (img->bits_per_pixel / 8)) + (img->size_line * y);
 	to_put = (pixel->r << (OCTET * 2)) | (pixel->g << OCTET) | pixel->b;
@@ -34,10 +33,13 @@ void	ft_pixel_put_on_image(struct s_img *img, int x, int y,
 
 struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 {
+	const struct s_rgb	black = (struct s_rgb){0, 0, 0, true};
 	struct s_rgb		ret;
 	int					offset;
 	unsigned int		*pixel;
 
+	if (img == NULL)
+		return (black);
 	(void)ft_memset(&ret, 0, sizeof(struct s_rgb));
 	if (x >= BLOCK_X)
 		x %= BLOCK_X;
@@ -96,19 +98,25 @@ void	ft_try_to_set_the_ray(struct s_ray *ray,
 void	ft_set_texture(struct s_data *data, struct s_ray *ray,
 		struct s_draw_line *out)
 {
-	out->should_invert_coords = false;
+	out->texture_index = -1;
 	if ((int)ray->y % BLOCK_Y == BLOCK_Y - 1)
 	{
 		out->texture = &data->textures[TEXTURE_NO];
-		out->should_invert_coords = true;
+		out->texture_index = TEXTURE_NO;
 	}
 	else if ((int)ray->y % BLOCK_Y == 0)
 	{
 		out->texture = &data->textures[TEXTURE_SO];
-		out->should_invert_coords = true;
+		out->texture_index = TEXTURE_SO;
 	}
 	else if ((int)ray->x % BLOCK_X == BLOCK_X - 1)
+	{
 		out->texture = &data->textures[TEXTURE_WE];
+		out->texture_index = TEXTURE_WE;
+	}
 	else if ((int)ray->x % BLOCK_X == 0)
+	{
 		out->texture = &data->textures[TEXTURE_EA];
+		out->texture_index = TEXTURE_EA;
+	}
 }
