@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:27:58 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:54:18 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,6 @@ int	ft_handle_keysyms(int keycode, struct s_data *data)
 		ft_handle_movement(keycode, data);
 	else if (keycode == XKB_KEY_Left || keycode == XKB_KEY_Right)
 		ft_handle_angle(keycode, data);
-	else
-		return (0);
 	(void)ft_render(data);
 	return (0);
 }

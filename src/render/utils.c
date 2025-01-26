@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:59:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:54:55 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,48 +82,20 @@ double	ft_dist(struct s_double_point a, struct s_double_point b, double angle)
  * @param	ray_coords		Rays coords.
  * @param	ray_angle		Rays angle.
  */
-void	ft_try_to_set_the_ray(struct s_ray *ray,
-		struct s_double_point player_coords, struct s_double_point ray_coords,
-		double ray_angle)
+void	ft_try_to_set_the_ray(struct s_set_ray arg)
 {
-	const double	dist = ft_dist(player_coords, ray_coords, ray_angle);
+	const double	dist = ft_dist(arg.player_coords, arg.ray_coords,
+			arg.ray_angle);
 	const double	minimal_possible_dist = 1.0f;
 
-	if (dist >= minimal_possible_dist && (!ray->hit || ray->distance > dist))
+	if (dist >= minimal_possible_dist && (!arg.ray->hit
+			|| arg.ray->distance > dist))
 	{
-		ray->x = ray_coords.x;
-		ray->y = ray_coords.y;
-		ray->distance = dist;
-		ray->angle = ray_angle;
-		ray->hit = true;
-	}
-}
-
-/**
- * Using round() or fmod() doesn't make sense in this case.
- */
-void	ft_set_texture(struct s_data *data, struct s_ray *ray,
-		struct s_draw_line *out)
-{
-	out->texture_index = -1;
-	if ((int)ray->y % TILE_SIZE == TILE_SIZE - 1)
-	{
-		out->texture = &data->textures[TEXTURE_NO];
-		out->texture_index = TEXTURE_NO;
-	}
-	else if ((int)ray->y % TILE_SIZE == 0)
-	{
-		out->texture = &data->textures[TEXTURE_SO];
-		out->texture_index = TEXTURE_SO;
-	}
-	else if ((int)ray->x % TILE_SIZE == TILE_SIZE - 1)
-	{
-		out->texture = &data->textures[TEXTURE_WE];
-		out->texture_index = TEXTURE_WE;
-	}
-	else if ((int)ray->x % TILE_SIZE == 0)
-	{
-		out->texture = &data->textures[TEXTURE_EA];
-		out->texture_index = TEXTURE_EA;
+		arg.ray->x = arg.ray_coords.x;
+		arg.ray->y = arg.ray_coords.y;
+		arg.ray->distance = dist;
+		arg.ray->angle = arg.ray_angle;
+		arg.ray->hit = true;
+		arg.ray->type = arg.ray_type;
 	}
 }

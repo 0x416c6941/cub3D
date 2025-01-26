@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:24:35 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:38:30 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 		draw_line_data.top_pixel = 0;
 	if (draw_line_data.bottom_pixel > WIN_Y)
 		draw_line_data.bottom_pixel = WIN_Y;
+	draw_line_data.texture = NULL;
+	draw_line_data.texture_index = -1;
 	ft_set_texture(data, ray, &draw_line_data);
 	draw_line_data.img_y = round(draw_line_data.top_pixel);
 	while (draw_line_data.img_y < draw_line_data.bottom_pixel)

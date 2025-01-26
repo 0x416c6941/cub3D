@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:46:25 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:52:07 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define DEGREE	0.0174533
 
 /**
+ * To distinguish horizontal from vertical rays.
+ */
+# define HORIZONTAL_RAY	1
+# define VERTICAL_RAY	2
+
+/**
  * ----------------------------------------------------------------------------
  * Structures.
  * ----------------------------------------------------------------------------
@@ -51,6 +57,7 @@ typedef struct s_ray
 	 * If not, then variables above may stay uninitialized.
 	 */
 	bool	hit;
+	int		type;		/* Horizontal or vertical. */
 }	t_ray;
 
 /**
@@ -87,6 +94,15 @@ typedef struct s_double_point
 	double	x;
 	double	y;
 }	t_double_point;
+
+typedef struct s_set_ray
+{
+	struct s_ray			*ray;
+	struct s_double_point	player_coords;
+	struct s_double_point	ray_coords;
+	double					ray_angle;
+	int						ray_type;
+}	t_set_ray;
 
 /**
  * Yet another Norminette bypass, this time for ft_draw_line()!
@@ -180,16 +196,11 @@ double			ft_dist(struct s_double_point a, struct s_double_point b,
 					double angle);
 
 /**
- * Norminette bypass. Try to set the \p ray,
+ * Norminette bypass. Try to set the "ray" in \p arg,
  * if it wasn't set already or if we found a shorter one.
- * @param	ray				Ray to try to set.
- * @param	player_coords	Current players coords.
- * @param	ray_coords		Rays coords.
- * @param	ray_angle		Rays angle.
+ * @param	arg	Please consult with the structure definition.
  */
-void			ft_try_to_set_the_ray(struct s_ray *ray,
-					struct s_double_point player_coords,
-					struct s_double_point ray_coords, double ray_angle);
+void			ft_try_to_set_the_ray(struct s_set_ray arg);
 
 /**
  * Sets the "texture" and "texture_index" attributes in \p out.

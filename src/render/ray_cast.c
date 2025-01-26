@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:19:04 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:50:37 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 22:48:28 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@
  * Continue the ray cast, until ray hits the wall.
  * @param	data		cub3D's data.
  * @param	ray			Out parameter.
- * 						Where to Store information where the ray hits the wall
- * 						and distance between that coordinate and us.
+ * 						Where to store information where the ray hits the wall
+ * 						and distance between that coordinate and us
+ * 						(and type of the ray).
  * @param	cast_data	Where to store the information
 * 						on where would the ray stop.
 * 						Basically a working structure.
+* @param
  */
 static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
-		struct s_ray *ray, struct s_ray_cast *cast_data)
+		struct s_ray *ray, struct s_ray_cast *cast_data, int ray_type)
 {
 	cast_data->casting_iteration = 0;
 	while (cast_data->casting_iteration < cast_data->max_casting_iterations)
@@ -45,10 +47,10 @@ static void	ft_ray_cast_until_wall_is_hit(struct s_data *data,
 			&& ft_get_map_row(data->map,
 				cast_data->map.y)[cast_data->map.x] == '1')
 		{
-			ft_try_to_set_the_ray(ray,
+			ft_try_to_set_the_ray((struct s_set_ray){ray,
 				(struct s_double_point){data->player.x, data->player.y},
 				(struct s_double_point){cast_data->ray_x, cast_data->ray_y},
-				cast_data->ray_angle);
+				cast_data->ray_angle, ray_type});
 		}
 		cast_data->ray_x += cast_data->ray_x_offset;
 		cast_data->ray_y += cast_data->ray_y_offset;
@@ -118,7 +120,8 @@ void	ft_horizontal_ray_cast(struct s_data *data, struct s_ray *rays,
 			continue ;
 		}
 		ft_horizontal_ray_cast_handle_up_and_down(data, &cast_data);
-		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data);
+		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data,
+			HORIZONTAL_RAY);
 		cast_data.ray_angle = ft_initialize_angle(cast_data.ray_angle - gap);
 		cast_data.i++;
 	}
@@ -189,7 +192,8 @@ void	ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
 			continue ;
 		}
 		ft_vertical_ray_cast_handle_left_and_right(data, &cast_data);
-		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data);
+		ft_ray_cast_until_wall_is_hit(data, rays + cast_data.i, &cast_data,
+			VERTICAL_RAY);
 		cast_data.ray_angle = ft_initialize_angle(cast_data.ray_angle - gap);
 		cast_data.i++;
 	}
