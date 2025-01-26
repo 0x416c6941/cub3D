@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 23:50:01 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 02:44:11 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,24 @@ void	ft_try_to_set_the_ray(struct s_ray *ray,
 		ray->angle = ray_angle;
 		ray->hit = true;
 	}
+}
+
+void	ft_set_texture(struct s_data *data, struct s_ray *ray,
+		struct s_draw_line *out)
+{
+	out->should_invert_y = false;
+	if ((int)ray->y % BLOCK_Y == BLOCK_Y - 1)
+	{
+		out->texture = &data->textures[TEXTURE_NO];
+		out->should_invert_y = true;
+	}
+	else if ((int)ray->y % BLOCK_Y == 0)
+	{
+		out->texture = &data->textures[TEXTURE_SO];
+		out->should_invert_y = true;
+	}
+	else if ((int)ray->x % BLOCK_X == BLOCK_X - 1)
+		out->texture = &data->textures[TEXTURE_WE];
+	else if ((int)ray->x % BLOCK_X == 0)
+		out->texture = &data->textures[TEXTURE_EA];
 }

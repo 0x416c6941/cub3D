@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/25 23:53:09 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 02:33:20 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,30 @@ typedef struct s_double_point
  */
 typedef struct s_draw_line
 {
-	double	fix_fisheye;
-	double	line_height;
-	double	line_offset;
+	double			fix_fisheye;
+	double			line_height;
+	double			line_offset;
+	int				i;
+	bool			should_invert_y;
+	struct s_img	*texture;
 }	t_draw_line;
+
+/**
+ * You guessed it: yet another Norminette bypass, hehe,
+ * this time for ft_draw_wall_pixel()!
+ */
+typedef struct s_draw_wall_pixel
+{
+	struct s_img		*img;
+	int					x;
+	int					y;
+	struct s_draw_line	draw_line_data;
+	struct s_ray		ray;
+	struct s_data		*main_data;
+	/**
+	 * Those fields will be initialized in ft_draw_wall_pixel() itself.
+	 */
+}	t_draw_wall_pixel;
 
 /**
  * ----------------------------------------------------------------------------
@@ -176,5 +196,14 @@ double			ft_dist(struct s_double_point a, struct s_double_point b,
 void			ft_try_to_set_the_ray(struct s_ray *ray,
 					struct s_double_point player_coords,
 					struct s_double_point ray_coords, double ray_angle);
+
+/**
+ * Sets the textures and "should_invert_y" attribute in \p out.
+ * @param	data	cub3D's data.
+ * @param	ray		Information on where did the cast ray lay.
+ * @param	out		Out parameter.
+ */
+void			ft_set_texture(struct s_data *data, struct s_ray *ray,
+					struct s_draw_line *out);
 
 #endif /* RENDER_H */

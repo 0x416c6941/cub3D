@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 18:41:27 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 02:51:23 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct s_data
 	t_coords	map_size;
 	t_coords	player;
 	t_angle		player_angle;
+	t_img		buffer;
 }	t_data;
 
 #endif /* CUB3D_H */
