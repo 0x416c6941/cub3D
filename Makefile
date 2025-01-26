@@ -19,7 +19,7 @@ SRC_FILES = main.c							\
 		init/init.c init/free_content.c init/utils.c		\
 		controls.c						\
 		render/ft_render.c render/ray_cast.c			\
-		render/ft_draw_line_pixel.c render/utils.c
+		render/draw_line_pixel_and_set_texture.c render/utils.c
 
 SRC_FILES := $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 
