@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 13:55:01 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:35:41 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,20 @@
 void	ft_pixel_put_on_image(struct s_img *img, int x, int y,
 			const struct s_rgb *pixel)
 {
-	int	offset;
-	int	to_put;
+	int				offset;
+	unsigned int	to_put;
+	(void)to_put;
 
 	offset = (x * (img->bits_per_pixel / 8)) + (img->size_line * y);
-	to_put = pixel->r;
-	to_put <<= OCTET;
-	to_put += pixel->g;
-	to_put <<= OCTET;
-	to_put += pixel->b;
-	*((int *)(img->img_pixels + offset)) = to_put;
+	to_put = (pixel->r << (OCTET * 2)) | (pixel->g << OCTET) | pixel->b;
+	*((unsigned int *)(img->img_pixels + offset)) = to_put;
 }
 
 struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 {
 	struct s_rgb		ret;
 	int					offset;
-	unsigned char		*pixel;
+	unsigned int		*pixel;
 
 	(void)ft_memset(&ret, 0, sizeof(struct s_rgb));
 	if (x >= BLOCK_X)
@@ -49,10 +46,10 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 	offset = (int)((x * ((img->width * 1.0f) / BLOCK_X))
 			* (img->bits_per_pixel / OCTET)) + (img->size_line
 			* (int)(y * ((img->height * 1.0f) / BLOCK_Y)));
-	pixel = ((unsigned char *)(img->img_pixels + offset));
-	ret.r = *(++pixel);
-	ret.g = *(++pixel);
-	ret.b = *(++pixel);
+	pixel = ((unsigned int *)(img->img_pixels + offset));
+	ret.r = *pixel >> OCTET * 2;
+	ret.g = *pixel >> OCTET;
+	ret.b = *pixel;
 	ret.set = true;
 	return (ret);
 }
