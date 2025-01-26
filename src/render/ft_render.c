@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 03:25:21 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:57:59 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,29 @@ static void	ft_draw_ceiling_and_floor(struct s_data *data, struct s_img *img)
 void	ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
 		struct s_draw_line *draw_line_data, int x)
 {
-	/*
-	 * TODO: This stuff is broken! Fix this, and cub3D is done.
 	struct s_rgb	pixel;
 
-	if (draw_line_data->line_height < BLOCK_Y)
-		pixel = ft_pixel_get_from_image(draw_line_data->texture,
-				ray->x,
-				draw_line_data->i * ((BLOCK_Y * 1.0f)
-					/ draw_line_data->line_height));
-	// WIN_Y!
-	else if (draw_line_data->line_height > BLOCK_Y)
-		pixel = (struct s_rgb){0, 0, 0, true};
+	if (draw_line_data->line_height <= WIN_Y)
+	{
+		if (draw_line_data->should_invert_coords == false)
+			pixel = ft_pixel_get_from_image(draw_line_data->texture,
+					ray->y,
+					draw_line_data->i * ((BLOCK_Y * 1.0f)
+						/ draw_line_data->line_height));
+		else
+			pixel = ft_pixel_get_from_image(draw_line_data->texture,
+					ray->x,
+					draw_line_data->i * ((BLOCK_Y * 1.0f)
+						/ draw_line_data->line_height));
+	}
 	else
+		pixel = (struct s_rgb){255, 255, 255, true};
+		/*
 		pixel = ft_pixel_get_from_image(draw_line_data->texture,
 				ray->x,
 				draw_line_data->i * ((BLOCK_Y * 1.0f)
 					/ draw_line_data->line_height));
-	 */
-	const struct s_rgb	pixel = (struct s_rgb){255, 0, 0, true};
-	(void)ray;
+	 	 */
 	ft_pixel_put_on_image(img,
 		x, draw_line_data->line_offset + draw_line_data->i, &pixel);
 }
@@ -96,7 +99,6 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 		struct s_ray *ray, int x)
 {
 	struct s_draw_line	draw_line_data;
-	int					until;
 
 	draw_line_data.fix_fisheye = ft_initialize_angle(data->player_angle.angle
 			- ray->angle);
@@ -105,13 +107,13 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	draw_line_data.line_offset = WIN_Y / 2 - draw_line_data.line_height / 2;
 	if (draw_line_data.line_height > WIN_Y)
 		draw_line_data.line_offset = 0;
-	draw_line_data.i = 0;
 	ft_set_texture(data, ray, &draw_line_data);
+	draw_line_data.i = 0;
 	if (draw_line_data.line_height > WIN_Y)
-		until = WIN_Y;
+		draw_line_data.until = WIN_Y;
 	else
-		until = draw_line_data.line_height;
-	while (draw_line_data.i < until)
+		draw_line_data.until = draw_line_data.line_height;
+	while (draw_line_data.i < draw_line_data.until)
 	{
 		ft_draw_line_pixel(img, ray, &draw_line_data, x);
 		draw_line_data.i++;

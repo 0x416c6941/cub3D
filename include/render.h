@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 02:33:20 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:54:44 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,27 +96,12 @@ typedef struct s_draw_line
 	double			fix_fisheye;
 	double			line_height;
 	double			line_offset;
-	int				i;
-	bool			should_invert_y;
+	bool			should_invert_coords;
 	struct s_img	*texture;
+	/* \ref until is basically a \ref line_height limited to WIN_Y. */
+	int				i;
+	int				until;
 }	t_draw_line;
-
-/**
- * You guessed it: yet another Norminette bypass, hehe,
- * this time for ft_draw_wall_pixel()!
- */
-typedef struct s_draw_wall_pixel
-{
-	struct s_img		*img;
-	int					x;
-	int					y;
-	struct s_draw_line	draw_line_data;
-	struct s_ray		ray;
-	struct s_data		*main_data;
-	/**
-	 * Those fields will be initialized in ft_draw_wall_pixel() itself.
-	 */
-}	t_draw_wall_pixel;
 
 /**
  * ----------------------------------------------------------------------------
