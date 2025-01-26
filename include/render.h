@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 18:44:19 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:12:25 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,20 +99,8 @@ typedef struct s_draw_line
 	double			bottom_pixel;	/* With maximum y (bottom of the screen). */
 	struct s_img	*texture;
 	int				texture_index;
-	int				i;				/* For loop to draw pixels. */
+	int				img_y;			/* y coordinate where to draw pixel. */
 }	t_draw_line;
-
-/**
- * ... I got no words.
- */
-typedef struct s_draw_line_pixel_norminette
-{
-	struct s_img		*img;
-	struct s_ray		*ray;
-	struct s_draw_line	*draw_line_data;
-	int					x;
-	struct s_rgb		*pixel;
-}	t_draw_line_pixel_norminette;
 
 /**
  * ----------------------------------------------------------------------------
@@ -152,10 +140,10 @@ void			ft_vertical_ray_cast(struct s_data *data, struct s_ray *rays,
  * @param	img				Image where to draw it.
  * @param	ray				Information where did the cast ray lay.
  * @param	draw_line_data	Data calculated in ft_draw_line().
- * @param	x				x coordinate of a pixel to draw.
+ * @param	img_x			x coordinate on \p img where to draw the pixel.
  */
 void			ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
-					struct s_draw_line *draw_line_data, int x);
+					struct s_draw_line *draw_line_data, int img_x);
 
 /**
  * Draws a \p pixel to a point [\p x, \p y] in \p img.

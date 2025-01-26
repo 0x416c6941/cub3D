@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:59:28 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 18:04:18 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:27:58 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ static void	ft_handle_collision_norminette(struct s_data *data,
 		&& (ft_get_map_row(data->map,
 				new_y / TILE_SIZE)[data->player.x / TILE_SIZE] == '1'
 		|| (new_y % TILE_SIZE < y_offset
-			&& ft_get_map_row(data->map, new_y / TILE_SIZE - 1)[data->player.x
-			/ TILE_SIZE] == '1')))
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE - 1)
+			[data->player.x / TILE_SIZE] == '1')))
 		new_y = data->player.y / TILE_SIZE * TILE_SIZE + y_offset;
 	else if (new_y > data->player.y
 		&& (ft_get_map_row(data->map,
 				new_y / TILE_SIZE)[data->player.x / TILE_SIZE] == '1'
-		|| ((TILE_SIZE - (new_y % TILE_SIZE - 1)) < y_offset
-			&& ft_get_map_row(data->map, new_y / TILE_SIZE + 1)[data->player.x
-			/ TILE_SIZE] == '1')))
+		|| (((TILE_SIZE - 1) - new_y % TILE_SIZE) < y_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE + 1)
+			[data->player.x / TILE_SIZE] == '1')))
 		new_y = data->player.y / TILE_SIZE * TILE_SIZE
-			+ (TILE_SIZE - 1 - y_offset);
+			+ ((TILE_SIZE - 1) - y_offset);
 	data->player.x = new_x;
 	data->player.y = new_y;
 }
@@ -67,17 +67,17 @@ static void	ft_handle_collision(struct s_data *data,
 		&& (ft_get_map_row(data->map,
 				data->player.y / TILE_SIZE)[new_x / TILE_SIZE] == '1'
 		|| (new_x % TILE_SIZE < x_offset
-			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)[new_x
-			/ TILE_SIZE - 1] == '1')))
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)
+			[data->player.x / TILE_SIZE - 1] == '1')))
 		new_x = data->player.x / TILE_SIZE * TILE_SIZE + x_offset;
 	else if (new_x > data->player.x
 		&& (ft_get_map_row(data->map,
 				data->player.y / TILE_SIZE)[new_x / TILE_SIZE] == '1'
-		|| ((TILE_SIZE - (new_x % TILE_SIZE - 1)) < x_offset
-			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)[new_x
-			/ TILE_SIZE + 1] == '1')))
+		|| (((TILE_SIZE - 1) - new_x % TILE_SIZE) < x_offset
+			&& ft_get_map_row(data->map, data->player.y / TILE_SIZE)
+			[data->player.x / TILE_SIZE + 1] == '1')))
 		new_x = data->player.x / TILE_SIZE * TILE_SIZE
-			+ (TILE_SIZE - 1 - x_offset);
+			+ ((TILE_SIZE - 1) - x_offset);
 	ft_handle_collision_norminette(data, new_x, new_y);
 }
 
@@ -134,6 +134,8 @@ int	ft_handle_keysyms(int keycode, struct s_data *data)
 		ft_handle_movement(keycode, data);
 	else if (keycode == XKB_KEY_Left || keycode == XKB_KEY_Right)
 		ft_handle_angle(keycode, data);
+	else
+		return (0);
 	(void)ft_render(data);
 	return (0);
 }

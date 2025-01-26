@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 19:24:31 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:24:35 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,18 @@ static void	ft_draw_line(struct s_data *data, struct s_img *img,
 	draw_line_data.line_height = (TILE_SIZE / ray->distance)
 		* ((WIN_X / 2) / tan((FOV * DEGREE) / 2));
 	draw_line_data.top_pixel = (WIN_Y / 2) - (draw_line_data.line_height / 2);
-	draw_line_data.bottom_pixel = (WIN_Y / 2) + (draw_line_data.line_height / 2);
+	draw_line_data.bottom_pixel = (WIN_Y / 2)
+		+ (draw_line_data.line_height / 2);
 	if (draw_line_data.top_pixel < 0)
 		draw_line_data.top_pixel = 0;
 	if (draw_line_data.bottom_pixel > WIN_Y)
 		draw_line_data.bottom_pixel = WIN_Y;
 	ft_set_texture(data, ray, &draw_line_data);
-	draw_line_data.i = round(draw_line_data.top_pixel);
-	while (draw_line_data.i < draw_line_data.bottom_pixel)
+	draw_line_data.img_y = round(draw_line_data.top_pixel);
+	while (draw_line_data.img_y < draw_line_data.bottom_pixel)
 	{
 		ft_draw_line_pixel(img, ray, &draw_line_data, x);
-		draw_line_data.i++;
+		draw_line_data.img_y++;
 	}
 }
 
@@ -125,10 +126,5 @@ int	ft_render(struct s_data *data)
 	(void)mlx_put_image_to_window(data->conn, data->win, img.img,
 		BEGINNING, BEGINNING);
 	(void)mlx_destroy_image(data->conn, img.img);
-	/* REMOVE THIS! */
-#include <sys/time.h>
-	struct timeval	time;
-	(void)gettimeofday(&time, NULL);
-	(void)printf("%ld\n", time.tv_sec * 1000 + time.tv_usec / 1000);
 	return (0);
 }
