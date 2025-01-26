@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 18:03:02 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:59:37 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ void	ft_try_to_set_the_ray(struct s_ray *ray,
 	}
 }
 
+/**
+ * Using round() or fmod() doesn't make sense in this case.
+ */
 void	ft_set_texture(struct s_data *data, struct s_ray *ray,
 		struct s_draw_line *out)
 {

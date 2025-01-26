@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:13:59 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 21:41:09 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:46:25 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_ray
 typedef struct s_ray_cast
 {
 	/**
-	 * Which ray we're casting now. H(i) = [0, FOV].
+	 * Which ray we're casting now. H(i) = [0, WIN_X].
 	 */
 	int			i;
 	double		ray_angle;
