@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/26 03:14:33 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:06:34 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@
 # define COLOR_CEILING 1
 
 /**
- * We can't get display's dimensions through MLX,
- * so we'll just window's dimensions to HD.
+ * We don't want to go through too fancy resolution,
+ * otherwise performace would be bad.
  */
-# define WIN_X	1280
-# define WIN_Y	720
+# define WIN_X	640
+# define WIN_Y	480
 
 /**
  * Every block's (place on map) coordinate will be 128x128 units wide.
