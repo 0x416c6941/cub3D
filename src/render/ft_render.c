@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:15:20 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 03:22:22 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 03:25:21 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
 		struct s_draw_line *draw_line_data, int x)
 {
 	/*
+	 * TODO: This stuff is broken! Fix this, and cub3D is done.
 	struct s_rgb	pixel;
 
 	if (draw_line_data->line_height < BLOCK_Y)
@@ -84,9 +85,10 @@ void	ft_draw_line_pixel(struct s_img *img, struct s_ray *ray,
 }
 
 /**
- * Draw a line on "buffer" in \p data based on cast \p ray values.
+ * Draw a line to \p img based on cast \p ray values.
  * Thanks a lot to @3DSage.
  * @param	data		cub3D's data.
+ * @param	img			Where to draw a line.
  * @param	ray			Cast ray.
  * @param	x_offset	On which x to start the drawing process.
  */
