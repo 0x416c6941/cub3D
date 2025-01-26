@@ -8,4 +8,5 @@ This project was developed by:
 <br>
 Speciae thanks to
 <b><a href="https://github.com/mcombeau">mcombeau</a></b>
+and <b><a href="https://github.com/Sleleu">Sleleu</a></b>
 for maps and textures!
