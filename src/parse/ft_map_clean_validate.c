@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:20:52 by root              #+#    #+#             */
-/*   Updated: 2025/01/24 17:28:53 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:06:20 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,11 @@ static int	ft_validate_map_characters_and_player(t_list *map)
  * check if there is only one player position;
  * check if there are only valid characters.
  * This function is massive, however it makes sense in our case.
+ * @warning	It's not interpreted in subject.pdf how we
+ * 			should treat maps, where they are spaces between player
+ * 			and edge of the map. In our case, we consider those as invalid,
+ * 			but this is easily changeable during the evaluation,
+ * 			if evaluating person isn't fine with this behaviour.
  * @brief	Does all required checks and map modifications.
  * @param	args	Pointer to arguments, containing the map
  * 					to validate and modify (clean / extend).
