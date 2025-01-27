@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/26 21:38:14 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:07:13 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@
  * We don't want to go through too fancy resolution,
  * otherwise performace would be bad.
  */
-# define WIN_X	640
-# define WIN_Y	480
+# define WIN_X	1280
+# define WIN_Y	720
 
 /**
  * Every block's (place on map) coordinate
  * will be TILE_SIZE * TILE_SIZE untis.
  */
-# define TILE_SIZE	64
+# define TILE_SIZE	128
 
 /**
  * Degrees (in radians) for north, south, east and west respectively.
