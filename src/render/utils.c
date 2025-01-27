@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/27 14:08:34 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:52:43 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ struct s_rgb	ft_pixel_get_from_image(struct s_img *img, int x, int y)
 		x %= TILE_SIZE;
 	if (y >= TILE_SIZE)
 		y %= TILE_SIZE;
-	offset = (int)((x * ((img->width * 1.0f) / TILE_SIZE))
-			* (img->bits_per_pixel / OCTET)) + (img->size_line
-			* (int)(y * ((img->height * 1.0f) / TILE_SIZE)));
+	offset = ((int)(x * (img->width * 1.0f) / TILE_SIZE)
+		* (img->bits_per_pixel / OCTET))
+		+ (img->size_line * (int)(y * (img->height * 1.0f) / TILE_SIZE));
 	pixel = ((unsigned int *)(img->img_pixels + offset));
 	ret.r = *pixel >> OCTET * 2;
 	ret.g = *pixel >> OCTET;

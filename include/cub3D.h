@@ -6,7 +6,7 @@
 /*   By: hlyshchu <hlyshchu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:56:57 by root              #+#    #+#             */
-/*   Updated: 2025/01/27 18:07:13 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:54:39 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
  * We don't want to go through too fancy resolution,
  * otherwise performace would be bad.
  */
-# define WIN_X	1280
-# define WIN_Y	720
+# define WIN_X	800
+# define WIN_Y	600
 
 /**
  * Every block's (place on map) coordinate
@@ -75,7 +75,7 @@
 /**
  * Yes, field of view!
  */
-# define FOV	60
+# define FOV	70
 
 /**
  * For system crashes: malloc, write...
