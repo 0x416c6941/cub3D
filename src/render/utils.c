@@ -6,7 +6,7 @@
 /*   By: asagymba <asagymba@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:06:29 by asagymba          #+#    #+#             */
-/*   Updated: 2025/01/26 22:54:55 by asagymba         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:08:34 by asagymba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_pixel_put_on_image(struct s_img *img, int x, int y,
 	unsigned int	to_put;
 
 	offset = (x * (img->bits_per_pixel / 8)) + (img->size_line * y);
-	to_put = (pixel->r << (OCTET * 2)) | (pixel->g << OCTET) | pixel->b;
+	to_put = (unsigned int)((pixel->r << (OCTET * 2))
+			| (pixel->g << OCTET) | pixel->b);
 	*((unsigned int *)(img->img_pixels + offset)) = to_put;
 }
 
