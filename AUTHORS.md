@@ -6,7 +6,7 @@ This project was developed by:
     <li><i><a href="https://github.com/0x416c6941">asagymba</a></i>, Asset Sagymbayev "0x416c6941"</li>
 </ul>
 <br>
-Speciae thanks to
+Special thanks to
 <b><a href="https://github.com/mcombeau">mcombeau</a></b>
 and <b><a href="https://github.com/Sleleu">Sleleu</a></b>
 for maps and textures!
